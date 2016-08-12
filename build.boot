@@ -30,7 +30,7 @@
 (deftask compile-cirru []
   (comp
     (start-stack-editor!)
-    (target :dir #{"compiled/"})))
+    (target :dir #{"src/"})))
 
 (defn use-text [x] {:attrs {:innerHTML x}})
 (defn html-dsl [data fileset]
@@ -63,10 +63,10 @@
         (commit!)))))
 
 (deftask dev []
+  (set-env!
+    :resource-paths #{"src/"})
   (comp
-    (start-stack-editor!)
-    (wait)
-    (target :dir #{"src/"})
+    (watch)
     (html-file :data {:build? false})
     (reload :on-jsload 'stack-workflow.core/on-jsload
             :cljs-asset-path ".")

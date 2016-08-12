@@ -1,0 +1,2 @@
+(boot (dev))
+(boot (compile-cirru))

@@ -11,6 +11,7 @@ Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal...
 Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
+boot repl # (boot (start-editor!))
 boot dev
 ```
 

@@ -4,14 +4,14 @@
                  [org.clojure/clojure       "1.8.0"       :scope "test"]
                  [adzerk/boot-cljs          "1.7.228-1"   :scope "test"]
                  [adzerk/boot-reload        "0.4.11"      :scope "test"]
-                 [cirru/stack-server        "0.1.1"       :scope "test"]
+                 [cirru/stack-server        "0.1.5"       :scope "test"]
                  [adzerk/boot-test          "1.1.2"       :scope "test"]
                  [mvc-works/hsl             "0.1.2"]
                  [respo                     "0.3.9"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
          '[adzerk.boot-reload :refer [reload]]
-         '[stack-server.core  :refer [start-stack-editor!]]
+         '[stack-server.core  :refer [start-stack-editor! transform-stack]]
          '[respo.alias        :refer [html head title script style meta' div link body]]
          '[respo.render.static-html :refer [make-html]]
          '[adzerk.boot-test   :refer :all]
@@ -20,11 +20,11 @@
 (def +version+ "0.1.0")
 
 (task-options!
-  pom {:project     'mvc-works/boot-workflow
+  pom {:project     'mvc-works/stack-workflow
        :version     +version+
        :description "Workflow"
-       :url         "https://github.com/mvc-works/boot-workflow"
-       :scm         {:url "https://github.com/mvc-works/boot-workflow"}
+       :url         "https://github.com/mvc-works/stack-workflow"
+       :scm         {:url "https://github.com/mvc-works/stack-workflow"}
        :license     {"MIT" "http://opensource.org/licenses/mit-license.php"}})
 
 (deftask compile-cirru []
@@ -37,7 +37,7 @@
   (make-html
     (html {}
     (head {}
-      (title (use-text "Boot Workflow"))
+      (title (use-text "Stack Workflow"))
       (link {:attrs {:rel "icon" :type "image/png" :href "mvc-works-192x192.png"}})
       (if (:build? data)
         (link (:attrs {:rel "manifest" :href "manifest.json"})))
@@ -93,7 +93,7 @@
 
 (deftask rsync []
   (with-pre-wrap fileset
-    (sh "rsync" "-r" "target/" "tiye:repo/mvc-works/boot-workflow" "--exclude" "main.out" "--delete")
+    (sh "rsync" "-r" "target/" "tiye:repo/mvc-works/stack-workflow" "--exclude" "main.out" "--delete")
     fileset))
 
 (deftask send-tiye []

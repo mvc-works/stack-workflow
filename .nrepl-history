@@ -1,2 +1,4 @@
 (boot (dev))
 (boot (compile-cirru))
+(boot (start-editor!))
+(boot (compile-cirru))

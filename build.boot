@@ -4,7 +4,7 @@
                  [org.clojure/clojure       "1.8.0"       :scope "test"]
                  [adzerk/boot-cljs          "1.7.228-1"   :scope "test"]
                  [adzerk/boot-reload        "0.4.11"      :scope "test"]
-                 [cirru/stack-server        "0.1.5"       :scope "test"]
+                 [cirru/stack-server        "0.1.6"       :scope "test"]
                  [adzerk/boot-test          "1.1.2"       :scope "test"]
                  [mvc-works/hsl             "0.1.2"]
                  [respo                     "0.3.9"]])
@@ -57,45 +57,27 @@
         (add-resource tmp)
         (commit!)))))
 
-(deftask compile-cirru []
-  (comp
-    (start-stack-editor!)
-    (target :dir #{"src/"})))
-
-(deftask dev []
-  (set-env!
-    :resource-paths #{"src/"})
-  (comp
-    (watch)
-    (html-file :data {:build? false})
-    (reload :on-jsload 'stack-workflow.core/on-jsload
-            :cljs-asset-path ".")
-    (cljs)
-    (target)))
-
 (deftask dev! []
   (comp
-    (compile-cirru)
+    (watch)
+    (start-stack-editor!)
+    (target :dir #{"src/"})
     (html-file :data {:build? false})
     (reload :on-jsload 'stack-workflow.core/on-jsload
             :cljs-asset-path ".")
     (cljs)
     (target)))
 
-(deftask build-simple []
-  (set-env!
-    :asset-paths #{"assets"})
+(deftask generate-code []
   (comp
-    (start-stack-editor!)
-    (cljs :optimizations :simple)
-    (html-file :data {:build? false})
-    (target)))
+    (transform-stack :filename "stack-sepal.ir")
+    (target :dir #{"src/"})))
 
 (deftask build-advanced []
   (set-env!
     :asset-paths #{"assets"})
   (comp
-    (start-stack-editor!)
+    (transform-stack :filename "stack-sepal.ir")
     (cljs :optimizations :advanced)
     (html-file :data {:build? true})
     (target)))
@@ -105,14 +87,9 @@
     (sh "rsync" "-r" "target/" "tiye:repo/mvc-works/stack-workflow" "--exclude" "main.out" "--delete")
     fileset))
 
-(deftask send-tiye []
-  (comp
-    (build-simple)
-    (rsync)))
-
 (deftask build []
   (comp
-    (start-stack-editor!)
+    (transform-stack :filename "stack-sepal.ir")
     (pom)
     (jar)
     (install)
@@ -129,6 +106,5 @@
   (set-env!
     :source-paths #{"src" "test"})
   (comp
-    (start-stack-editor!)
     (watch)
     (test :namespaces '#{stack-workflow.test})))

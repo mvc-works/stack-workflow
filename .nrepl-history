@@ -2,3 +2,16 @@
 (boot (compile-cirru))
 (boot (start-editor!))
 (boot (compile-cirru))
+(boot (start-editor!))
+(boot (compile-cirru))
+(boot (dev!))
+(require '[boot.core :as core])
+core/*warning*
+core/*warnings*
+(boot (compile-cirru))
+(boot (dev!))
+(require '[boot.core :as core])
+core/*warnings*
+@core/*warnings*
+(swap! @core/*warnings* + 1)
+(swap! @core/*warnings* + 3)

@@ -17,7 +17,7 @@
 (defn on-jsload []
   (clear-cache!)
   (render-app!)
-  (println "code update."))
+  (println "code update. 3"))
 
 (defn -main []
   (enable-console-print!)

@@ -27,11 +27,6 @@
        :scm         {:url "https://github.com/mvc-works/stack-workflow"}
        :license     {"MIT" "http://opensource.org/licenses/mit-license.php"}})
 
-(deftask compile-cirru []
-  (comp
-    (start-stack-editor!)
-    (target :dir #{"src/"})))
-
 (defn use-text [x] {:attrs {:innerHTML x}})
 (defn html-dsl [data fileset]
   (make-html
@@ -62,11 +57,25 @@
         (add-resource tmp)
         (commit!)))))
 
+(deftask compile-cirru []
+  (comp
+    (start-stack-editor!)
+    (target :dir #{"src/"})))
+
 (deftask dev []
   (set-env!
     :resource-paths #{"src/"})
   (comp
     (watch)
+    (html-file :data {:build? false})
+    (reload :on-jsload 'stack-workflow.core/on-jsload
+            :cljs-asset-path ".")
+    (cljs)
+    (target)))
+
+(deftask dev! []
+  (comp
+    (compile-cirru)
     (html-file :data {:build? false})
     (reload :on-jsload 'stack-workflow.core/on-jsload
             :cljs-asset-path ".")

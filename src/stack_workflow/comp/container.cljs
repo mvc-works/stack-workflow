@@ -10,7 +10,7 @@
 (defn render []
   (fn [state mutate!]
     (div
-      {:style widget/global}
+      {:style (merge widget/global)}
       (span {:attrs {:inner-text "Container"}})
       (comp-space "8px" nil)
       (div {:style widget/button} (comp-text "add" nil))

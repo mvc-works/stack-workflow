@@ -58,6 +58,8 @@
         (commit!)))))
 
 (deftask dev! []
+  (set-env!
+    :asset-paths #{"assets"}
   (comp
     (watch)
     (start-stack-editor!)

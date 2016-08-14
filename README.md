@@ -10,6 +10,9 @@ Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
 boot repl # (boot (dev!))
+
+# or
+boot dev!
 ```
 
 Compile and optimize ClojureScript, generate HTML with revision:

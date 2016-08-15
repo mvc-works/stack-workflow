@@ -59,7 +59,7 @@
 
 (deftask dev! []
   (set-env!
-    :asset-paths #{"assets"}
+    :asset-paths #{"assets"})
   (comp
     (watch)
     (start-stack-editor!)

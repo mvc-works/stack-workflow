@@ -1,9 +1,9 @@
 
 (set-env!
- :dependencies '[[org.clojure/clojurescript "1.9.89"      :scope "test"]
+ :dependencies '[[org.clojure/clojurescript "1.9.216"     :scope "test"]
                  [org.clojure/clojure       "1.8.0"       :scope "test"]
                  [adzerk/boot-cljs          "1.7.228-1"   :scope "test"]
-                 [adzerk/boot-reload        "0.4.11"      :scope "test"]
+                 [adzerk/boot-reload        "0.4.12"      :scope "test"]
                  [cirru/stack-server        "0.1.7"       :scope "test"]
                  [adzerk/boot-test          "1.1.2"       :scope "test"]
                  [mvc-works/hsl             "0.1.2"]

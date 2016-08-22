@@ -7,6 +7,7 @@
                  [cirru/stack-server        "0.1.7"       :scope "test"]
                  [adzerk/boot-test          "1.1.2"       :scope "test"]
                  [mvc-works/hsl             "0.1.2"]
+                 [respo/ui                  "0.1.1"]
                  [respo                     "0.3.9"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]

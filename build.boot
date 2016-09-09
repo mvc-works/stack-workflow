@@ -68,7 +68,7 @@
     (html-file :data {:build? false})
     (reload :on-jsload 'stack-workflow.core/on-jsload
             :cljs-asset-path ".")
-    (cljs)
+    (cljs :compiler-options {:language-in :ecmascript5})
     (target)))
 
 (deftask generate-code []
@@ -81,7 +81,8 @@
     :asset-paths #{"assets"})
   (comp
     (transform-stack :filename "stack-sepal.ir")
-    (cljs :optimizations :advanced)
+    (cljs :optimizations :advanced
+          :compiler-options {:language-in :ecmascript5})
     (html-file :data {:build? true})
     (target)))
 

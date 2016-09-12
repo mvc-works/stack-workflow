@@ -9,9 +9,6 @@ Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal...
 Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
-boot repl # (boot (dev!))
-
-# or
 boot dev!
 ```
 
@@ -38,6 +35,10 @@ Get ClojureScript code:
 ```bash
 boot generate-code
 ```
+
+### Workflow
+
+https://github.com/mvc-works/stack-workflow
 
 ### License
 

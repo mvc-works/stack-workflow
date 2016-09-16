@@ -16,6 +16,8 @@ Compile and optimize ClojureScript, generate HTML with revision:
 
 ```bash
 boot build-advanced
+export boot_deps=`boot show -c`
+planck -c $boot_deps:src/ -i render.cljs
 ```
 
 Package jar file and install locally:
@@ -36,9 +38,9 @@ Get ClojureScript code:
 boot generate-code
 ```
 
-### Workflow
+### Develop
 
-https://github.com/mvc-works/stack-workflow
+Workflow https://github.com/mvc-works/stack-workflow
 
 ### License
 

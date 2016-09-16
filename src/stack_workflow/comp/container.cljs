@@ -4,9 +4,7 @@
             [respo-ui.style :as ui]
             [respo.alias :refer [create-comp div span]]
             [respo.comp.space :refer [comp-space]]
-            [respo.comp.text :refer [comp-text]]
-            [stack-workflow.style.widget :as widget]
-            [stack-workflow.comp.button :refer [comp-button]]))
+            [respo.comp.text :refer [comp-text]]))
 
 (defn render []
   (fn [state mutate!]

@@ -32,18 +32,18 @@
 (defn html-dsl [data fileset]
   (make-html
     (html {}
-    (head {}
-      (title (use-text "Stack Workflow"))
-      (link {:attrs {:rel "icon" :type "image/png" :href "mvc-works-192x192.png"}})
-      (meta'{:attrs {:charset "utf-8"}})
-      (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
-      (meta' {:attrs {:id "ssr-stages" :content "#{}"}})
-      (style (use-text "body {margin: 0;}"))
-      (style (use-text "body * {box-sizing: border-box;}"))
-      (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
-    (body {}
-      (div {:attrs {:id "app"}})
-      (script {:attrs {:src "main.js"}})))))
+      (head {}
+        (title (use-text "Stack Workflow"))
+        (link {:attrs {:rel "icon" :type "image/png" :href "mvc-works-192x192.png"}})
+        (meta'{:attrs {:charset "utf-8"}})
+        (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
+        (meta' {:attrs {:id "ssr-stages" :content "#{}"}})
+        (style (use-text "body {margin: 0;}"))
+        (style (use-text "body * {box-sizing: border-box;}"))
+        (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
+      (body {}
+        (div {:attrs {:id "app"}})
+        (script {:attrs {:src "main.js"}})))))
 
 (deftask html-file
   "task to generate HTML file"
@@ -87,7 +87,7 @@
 
 (deftask rsync []
   (with-pre-wrap fileset
-    (sh "rsync" "-r" "target/" "tiye:repo/mvc-works/stack-workflow" "--exclude" "main.out" "--delete")
+    (sh "rsync" "-r" "target/" "repo.tiye.me:repo/mvc-works/stack-workflow" "--exclude" "main.out" "--delete")
     fileset))
 
 (deftask build []

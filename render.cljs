@@ -2,7 +2,7 @@
 (ns ssr-stages.boot
   (:require
     [respo.alias :refer [html head title script style meta' div link body]]
-    [respo.render.static-html :refer [make-html make-string]]
+    [respo.render.html :refer [make-html make-string]]
     [stack-workflow.comp.container :refer [comp-container]]
     [planck.core :refer [spit]]))
 

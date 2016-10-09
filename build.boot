@@ -59,7 +59,7 @@
 
 (deftask dev! []
   (set-env!
-    :asset-paths #{})
+    :asset-paths #{"assets/"})
   (comp
     (repl)
     (start-stack-editor!)
@@ -77,7 +77,7 @@
 
 (deftask build-advanced []
   (set-env!
-    :asset-paths #{})
+    :asset-paths #{"assets/"})
   (comp
     (transform-stack :filename "stack-sepal.ir")
     (cljs :optimizations :advanced

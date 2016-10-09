@@ -14,16 +14,16 @@
   (let [target (.querySelector js/document "#app")]
     (render! (comp-container @store-ref) target dispatch! states-ref)))
 
-(defn on-jsload []
-  (clear-cache!)
-  (render-app!)
-  (println "code update."))
-
-(defn -main []
+(defn -main! []
   (enable-console-print!)
   (render-app!)
   (add-watch store-ref :changes render-app!)
   (add-watch states-ref :changes render-app!)
   (println "app started!"))
 
-(set! (.-onload js/window) -main)
+(defn on-jsload! []
+  (clear-cache!)
+  (render-app!)
+  (println "code update."))
+
+(set! (.-onload js/window) -main!)

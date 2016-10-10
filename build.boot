@@ -65,7 +65,7 @@
     (start-stack-editor!)
     (target :dir #{"src/"})
     (html-file :data {:build? false})
-    (reload :on-jsload 'stack-workflow.core/on-jsload!
+    (reload :on-jsload 'stack-workflow.main/on-jsload!
             :cljs-asset-path ".")
     (cljs :compiler-options {:language-in :ecmascript5})
     (target)))

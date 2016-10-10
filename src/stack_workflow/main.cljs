@@ -1,5 +1,5 @@
 
-(ns stack-workflow.core
+(ns stack-workflow.main
   (:require [respo.core :refer [render! clear-cache!]]
             [stack-workflow.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]))

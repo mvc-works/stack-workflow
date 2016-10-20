@@ -12,7 +12,7 @@
     (html {}
       (head {}
         (title (use-text (str "Stack Workflow")))
-        (link {:attrs {:rel "icon" :type "image/png" :href "mvc-works-192x192.png"}})
+        (link {:attrs {:rel "icon" :type "image/png" :href "http://logo.mvc-works.org/mvc.png"}})
         (meta' {:attrs {:charset "utf-8"}})
         (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
         (meta' {:attrs {:id "ssr-stages" :content (pr-str ssr-stages)}})

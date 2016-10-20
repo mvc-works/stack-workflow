@@ -1,7 +1,7 @@
 
 (set-env!
  :dependencies '[[org.clojure/clojure       "1.8.0"       :scope "test"]
-                 [org.clojure/clojurescript "1.9.216"     :scope "test"]
+                 [org.clojure/clojurescript "1.9.293"     :scope "test"]
                  [adzerk/boot-cljs          "1.7.228-1"   :scope "test"]
                  [adzerk/boot-reload        "0.4.12"      :scope "test"]
                  [cirru/boot-stack-server   "0.1.16"      :scope "test"]
@@ -34,7 +34,7 @@
     (html {}
       (head {}
         (title (use-text "Stack Workflow"))
-        (link {:attrs {:rel "icon" :type "image/png" :href "mvc-works-192x192.png"}})
+        (link {:attrs {:rel "icon" :type "image/png" :href "http://logo.mvc-works.org/mvc.png"}})
         (meta'{:attrs {:charset "utf-8"}})
         (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
         (meta' {:attrs {:id "ssr-stages" :content "#{}"}})

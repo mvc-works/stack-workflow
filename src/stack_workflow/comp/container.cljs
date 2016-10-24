@@ -9,8 +9,8 @@
 (defn render []
   (fn [state mutate!]
     (div
-      {:style (merge ui/global)}
-      (comp-space "8px" nil)
-      (div {:style ui/button} (comp-text "demo" nil)))))
+     {:style (merge ui/global)}
+     (comp-space "8px" nil)
+     (div {:style ui/button} (comp-text "demo" nil)))))
 
 (def comp-container (create-comp :container render))

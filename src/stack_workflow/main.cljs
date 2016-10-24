@@ -4,7 +4,7 @@
             [stack-workflow.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]))
 
-(defn dispatch! [op op-data])
+(defn dispatch! [op op-data] )
 
 (defonce store-ref (atom {}))
 
@@ -21,9 +21,6 @@
   (add-watch states-ref :changes render-app!)
   (println "app started!"))
 
-(defn on-jsload! []
-  (clear-cache!)
-  (render-app!)
-  (println "code update."))
+(defn on-jsload! [] (clear-cache!) (render-app!) (println "code update."))
 
 (set! (.-onload js/window) -main!)

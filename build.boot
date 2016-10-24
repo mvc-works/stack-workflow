@@ -82,7 +82,8 @@
   (comp
     (transform-stack :filename "stack-sepal.ir")
     (cljs :optimizations :advanced
-          :compiler-options {:language-in :ecmascript5})
+          :compiler-options {:language-in :ecmascript5
+                             :parallel-build true})
     (html-file :data {:build? true})
     (target)))
 

@@ -58,24 +58,22 @@
         (add-resource tmp)
         (commit!)))))
 
-(deftask dev! []
-  (set-env!
-    :asset-paths #{"assets/"})
-  (comp
-    (repl)
-    (start-stack-editor!)
-    (target :dir #{"src/"})
-    (html-file :data {:build? false})
-    (reload :on-jsload 'stack-workflow.main/on-jsload!
-            :cljs-asset-path ".")
-    (cljs :compiler-options {:language-in :ecmascript5})
-    (target)))
-
 (deftask editor! []
   (comp
     (repl)
     (start-stack-editor!)
     (target :dir #{"src/"})))
+
+(deftask dev! []
+  (set-env!
+    :asset-paths #{"assets/"})
+  (comp
+    (editor!)
+    (html-file :data {:build? false})
+    (reload :on-jsload 'stack-workflow.main/on-jsload!
+            :cljs-asset-path ".")
+    (cljs :compiler-options {:language-in :ecmascript5})
+    (target)))
 
 (deftask generate-code []
   (comp

@@ -1,7 +1,6 @@
 
 (ns stack-workflow.main
   (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
-            [respo.util.format :refer [mute-element]]
             [stack-workflow.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]))
 
@@ -26,7 +25,7 @@
     (let [target (.querySelector js/document "#app")]
       (falsify-stage!
        target
-       (mute-element (render-element (comp-container @store-ref ssr-stages) states-ref))
+       (render-element (comp-container @store-ref ssr-stages) states-ref)
        dispatch!)))
   (render-app!)
   (add-watch store-ref :changes render-app!)

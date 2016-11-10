@@ -2,7 +2,9 @@
 Stack Workflow
 ----
 
-Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal...
+Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, [Lumo][lumo]...
+
+[lumo]: https://github.com/anmonteiro/lumo/tree/master/src/cljs/lumo
 
 ### Develop
 
@@ -17,7 +19,7 @@ Compile and optimize ClojureScript, generate HTML with revision:
 ```bash
 boot build-advanced
 export boot_deps=`boot show -c`
-planck -c $boot_deps:src/ -i render.cljs
+lumo -c $boot_deps:src/ -i render.cljs
 ```
 
 Package jar file and install locally:

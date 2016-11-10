@@ -3,8 +3,7 @@
   (:require
     [respo.alias :refer [html head title script style meta' div link body]]
     [respo.render.html :refer [make-html make-string]]
-    [stack-workflow.comp.container :refer [comp-container]]
-    [planck.core :refer [spit]]))
+    [stack-workflow.comp.container :refer [comp-container]]))
 
 (defn use-text [x] {:attrs {:innerHTML x}})
 (defn html-dsl [data html-content ssr-stages]
@@ -27,6 +26,10 @@
   (let [ tree (comp-container {} ssr-stages)
          html-content (make-string tree)]
     (html-dsl {:build? true} html-content ssr-stages)))
+
+(defn spit [file-name content]
+  (let [fs (js/require "fs")]
+    (.writeFileSync fs file-name content)))
 
 (defn -main []
   (spit "target/index.html" (generate-html #{:shell})))

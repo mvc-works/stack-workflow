@@ -1,6 +1,8 @@
 
 (ns stack-workflow.main
-  (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
+  (:require [respo.core
+             :refer
+             [render! clear-cache! falsify-stage! render-element gc-states!]]
             [stack-workflow.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]))
 
@@ -28,6 +30,7 @@
        (render-element (comp-container @store-ref ssr-stages) states-ref)
        dispatch!)))
   (render-app!)
+  (add-watch store-ref :gc (fn [] (gc-states! states-ref)))
   (add-watch store-ref :changes render-app!)
   (add-watch states-ref :changes render-app!)
   (println "app started!"))

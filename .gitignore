@@ -3,3 +3,5 @@
 /.nrepl*
 /src/*.*
 /src/.*
+
+/node_modules

@@ -6,11 +6,20 @@ Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, [Lum
 
 [lumo]: https://github.com/anmonteiro/lumo/tree/master/src/cljs/lumo
 
+Features:
+
+* Program with Stack Editor
+* Hot code swapping
+* Basic UI styles
+* Fonts and icons packed in Webpack
+* Compilation and minification
+
 ### Develop
 
 Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
+webpack
 boot dev!
 ```
 
@@ -18,6 +27,7 @@ Compile and optimize ClojureScript, generate HTML with revision:
 
 ```bash
 boot build-advanced
+webpack
 export boot_deps=`boot show -c`
 lumo -c $boot_deps:src/ -i render.cljs
 ```

@@ -29,7 +29,7 @@ Compile and optimize ClojureScript, generate HTML with revision:
 boot build-advanced
 webpack
 export boot_deps=`boot show -c`
-lumo -c $boot_deps:src/ -i render.cljs
+lumo -Kc $boot_deps:src/ -i render.cljs
 ```
 
 Package jar file and install locally:

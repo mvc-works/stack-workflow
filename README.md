@@ -20,7 +20,9 @@ Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
 webpack
-boot dev!
+boot editor!
+# open another tab in terminal
+boot dev
 ```
 
 Compile and optimize ClojureScript, generate HTML with revision:

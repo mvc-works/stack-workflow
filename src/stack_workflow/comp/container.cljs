@@ -6,11 +6,12 @@
             [respo.comp.space :refer [comp-space]]
             [respo.comp.text :refer [comp-text]]))
 
-(defn render []
-  (fn [state mutate!]
-    (div
-     {:style (merge ui/global)}
-     (comp-space "8px" nil)
-     (div {:style ui/button} (comp-text "demo" nil)))))
-
-(def comp-container (create-comp :container render))
+(def comp-container
+  (create-comp
+   :container
+   (fn [store]
+     (fn [state mutate!]
+       (div
+        {:style (merge ui/global)}
+        (comp-space "8px" nil)
+        (div {:style ui/button} (comp-text "Demo" nil)))))))

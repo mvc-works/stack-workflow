@@ -65,11 +65,12 @@
     (start-stack-editor!)
     (target :dir #{"src/"})))
 
-(deftask dev! []
+(deftask dev []
   (set-env!
-    :asset-paths #{"assets/"})
+    :asset-paths #{"assets/"}
+    :resource-paths #{"src/"})
   (comp
-    (editor!)
+    (watch)
     (html-file :data {:build? false})
     (reload :on-jsload 'stack-workflow.main/on-jsload!
             :cljs-asset-path ".")

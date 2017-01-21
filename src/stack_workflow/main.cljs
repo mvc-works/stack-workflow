@@ -33,8 +33,8 @@
   (add-watch store-ref :gc (fn [] (gc-states! states-ref)))
   (add-watch store-ref :changes render-app!)
   (add-watch states-ref :changes render-app!)
-  (println "app started!"))
+  (println "App started!"))
 
-(defn on-jsload! [] (clear-cache!) (render-app!) (println "code update."))
+(defn on-jsload! [] (clear-cache!) (render-app!) (println "Code updated."))
 
 (set! (.-onload js/window) -main!)

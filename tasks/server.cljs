@@ -31,6 +31,7 @@
   (let [file-dict (collect-files sepal-data)]
     (doseq [entry file-dict]
       (let [[file-name content] entry]
+        (println "File compiled:" file-name)
         (fs.writeFileSync (path.join out-folder (str file-name extname)) content)))))
 
 (defn req-handler [req res]

@@ -28,11 +28,16 @@
          html-content (make-string tree)]
     (html-dsl {:build? true} html-content ssr-stages)))
 
+(defn generate-empty-html [ssr-stages]
+  (html-dsl {:build? true} "" ssr-stages))
+
 (defn spit [file-name content]
   (let [fs (js/require "fs")]
     (.writeFileSync fs file-name content)))
 
 (defn -main []
-  (spit "target/index.html" (generate-html #{:shell})))
+  (if (= js/process.env.env "dev")
+    (spit "target/dev.html" (generate-empty-html #{:shell}))
+    (spit "target/index.html" (generate-html #{:shell}))))
 
 (-main)

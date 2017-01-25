@@ -15,8 +15,7 @@
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
          '[adzerk.boot-reload :refer [reload]]
-         '[adzerk.boot-test   :refer :all]
-         '[clojure.java.io    :as    io])
+         '[adzerk.boot-test   :refer :all])
 
 (def +version+ "0.1.0")
 

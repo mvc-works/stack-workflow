@@ -23,13 +23,13 @@
         (div {:attrs {:id "app" :innerHTML html-content}})
         (script {:attrs {:src "main.js"}})))))
 
-(defn generate-html [ssr-stages]
-  (let [ tree (comp-container {} ssr-stages)
+(defn generate-html []
+  (let [ tree (comp-container {} #{:shell})
          html-content (make-string tree)]
-    (html-dsl {:build? true} html-content ssr-stages)))
+    (html-dsl {:build? true} html-content #{:shell})))
 
-(defn generate-empty-html [ssr-stages]
-  (html-dsl {:build? true} "" ssr-stages))
+(defn generate-empty-html []
+  (html-dsl {:build? true} "" {}))
 
 (defn spit [file-name content]
   (let [fs (js/require "fs")]
@@ -37,7 +37,7 @@
 
 (defn -main []
   (if (= js/process.env.env "dev")
-    (spit "target/dev.html" (generate-empty-html #{:shell}))
-    (spit "target/index.html" (generate-html #{:shell}))))
+    (spit "target/dev.html" (generate-empty-html))
+    (spit "target/index.html" (generate-html))))
 
 (-main)

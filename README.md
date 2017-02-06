@@ -30,7 +30,7 @@ Compile and optimize ClojureScript, generate HTML with revision:
 ```bash
 boot build-advanced
 webpack
-export boot_deps=`boot show -c`
+source tasks/class-path.sh
 lumo -Kc $boot_deps:src/ -i tasks/render.cljs
 ```
 

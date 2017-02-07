@@ -20,7 +20,8 @@ Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
 webpack
-boot editor!
+source tasks/class-path.sh
+lumo -Kc $boot_deps:src/ -i tasks/server.cljs
 # open another tab in terminal
 boot dev
 ```

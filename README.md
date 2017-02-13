@@ -16,11 +16,24 @@ Features:
 
 ### Develop
 
+First load dependencies:
+
+```bash
+npm i
+webpack
+export boot_deps=`boot show -c`
+```
+
+Since Boot boots slowly, I cached the result a file, which contains paths of my laptop:
+
+```bash
+source tasks/class-path.sh
+```
+
 Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
-webpack
-source tasks/class-path.sh
+env=dev lumo -Kc $boot_deps:src/ -i tasks/render.cljs
 lumo -Kc $boot_deps:src/ -i tasks/server.cljs
 # open another tab in terminal
 boot dev
@@ -30,8 +43,6 @@ Compile and optimize ClojureScript, generate HTML with revision:
 
 ```bash
 boot build-advanced
-webpack
-source tasks/class-path.sh
 lumo -Kc $boot_deps:src/ -i tasks/render.cljs
 ```
 
@@ -50,7 +61,7 @@ boot deploy
 Get ClojureScript code:
 
 ```bash
-boot generate-code
+op=compile lumo -Kc $boot_deps:src/ -i tasks/server.cljs
 ```
 
 ### Develop

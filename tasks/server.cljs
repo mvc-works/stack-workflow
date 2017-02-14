@@ -73,7 +73,7 @@
 (defn create-app! []
   (let [app (http.createServer req-handler)]
     (.listen app port)
-    (println "App listening on " port ".")))
+    (println (str "App listening on " port "."))))
 
 (if (= js/process.env.op "compile")
   (compile-source! @sepal-ref)

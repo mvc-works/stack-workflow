@@ -22,12 +22,7 @@ First load dependencies:
 npm i
 webpack
 export boot_deps=`boot show -c`
-```
-
-Since Boot boots slowly, I cached the result a file, which contains paths of my laptop:
-
-```bash
-source tasks/class-path.sh
+# starting Boot is slow, sometimes I cache the result in a file
 ```
 
 Genetate HTML(`target/index.html`), watch and build ClojureScript:

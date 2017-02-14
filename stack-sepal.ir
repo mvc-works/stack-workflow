@@ -1,6 +1,6 @@
-{:package "stack-workflow",
+{:package "client",
  :files {"comp.container" {:ns ["ns"
-                                "stack-workflow.comp.container"
+                                "client.comp.container"
                                 [":require"
                                  ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                                  ["[]" "respo-ui.style" ":as" "ui"]
@@ -23,13 +23,13 @@
                                                          ["comp-text" "|Demo" "nil"]]]]]]]},
                            :procs []},
          "main" {:ns ["ns"
-                      "stack-workflow.main"
+                      "client.main"
                       [":require"
                        ["[]"
                         "respo.core"
                         ":refer"
                         ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element" "gc-states!"]]
-                       ["[]" "stack-workflow.comp.container" ":refer" ["[]" "comp-container"]]
+                       ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
                        ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]]],
                  :defs {"dispatch!" ["defn" "dispatch!" ["op" "op-data"]],
                         "-main!" ["defn"

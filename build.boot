@@ -33,7 +33,7 @@
     :asset-paths #{"assets/"})
   (comp
     (watch)
-    (reload :on-jsload 'stack-workflow.main/on-jsload!
+    (reload :on-jsload 'client.main/on-jsload!
             :cljs-asset-path ".")
     (cljs :compiler-options {:language-in :ecmascript5})
     (target :no-clean true)))
@@ -70,4 +70,4 @@
     :source-paths #{"src" "test"})
   (comp
     (watch)
-    (test :namespaces '#{stack-workflow.test})))
+    (test :namespaces '#{client.test})))

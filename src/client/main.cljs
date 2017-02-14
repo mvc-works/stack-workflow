@@ -1,9 +1,9 @@
 
-(ns stack-workflow.main
+(ns client.main
   (:require [respo.core
              :refer
              [render! clear-cache! falsify-stage! render-element gc-states!]]
-            [stack-workflow.comp.container :refer [comp-container]]
+            [client.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]))
 
 (defn dispatch! [op op-data] )

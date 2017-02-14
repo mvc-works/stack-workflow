@@ -1,5 +1,5 @@
 
-(ns stack-workflow.comp.container
+(ns client.comp.container
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo.alias :refer [create-comp div span]]

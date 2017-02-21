@@ -8,3 +8,4 @@
 
 .lumo_cache
 tasks/class-path.sh
+out/

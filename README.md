@@ -59,6 +59,13 @@ Get ClojureScript code:
 op=compile lumo -Kc $boot_deps:src/ -i tasks/server.cljs
 ```
 
+### Build with lumo@1.2.0
+
+```bash
+export boot_deps=`boot show -c`
+lumo -Kc $boot_deps:src/ -i tasks/build.cljs
+```
+
 ### Develop
 
 Workflow https://github.com/mvc-works/stack-workflow

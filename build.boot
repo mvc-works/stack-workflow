@@ -12,7 +12,7 @@
                   [fipp                      "0.6.9"       :scope "test"]
                   [mvc-works/hsl             "0.1.2"]
                   [respo/ui                  "0.1.6"]
-                  [respo                     "0.3.37"]])
+                  [respo                     "0.3.38"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
          '[adzerk.boot-reload :refer [reload]])

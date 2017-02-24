@@ -3,7 +3,7 @@
   (:require
     [respo.alias :refer [html head title script style meta' div link body]]
     [respo.render.html :refer [make-html make-string]]
-    [stack-workflow.comp.container :refer [comp-container]]))
+    [client.comp.container :refer [comp-container]]))
 
 (defn html-dsl [data html-content ssr-stages]
   (make-html

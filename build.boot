@@ -11,7 +11,7 @@
                   [cumulo/shallow-diff       "0.1.2"       :scope "test"]
                   [fipp                      "0.6.9"       :scope "test"]
                   [mvc-works/hsl             "0.1.2"]
-                  [respo/ui                  "0.1.6"]
+                  [respo/ui                  "0.1.8"]
                   [respo                     "0.3.38"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]

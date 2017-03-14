@@ -17,8 +17,6 @@
 (require '[adzerk.boot-cljs   :refer [cljs]]
          '[adzerk.boot-reload :refer [reload]])
 
-(def +version+ "0.1.0")
-
 (deftask dev []
   (comp
     (watch)
@@ -37,6 +35,8 @@
                              :optimize-constants true
                              :source-map true})
     (target :no-clean true)))
+
+(def +version+ "0.1.0")
 
 (deftask build []
   (comp

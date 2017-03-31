@@ -14,7 +14,7 @@
                                                      ["fn"
                                                       ["store"]
                                                       ["fn"
-                                                       ["state" "mutate!"]
+                                                       ["cursor"]
                                                        ["div"
                                                         ["{}" [":style" ["merge" "ui/global"]]]
                                                         ["comp-space" "|8px" "nil"]
@@ -25,10 +25,7 @@
          "main" {:ns ["ns"
                       "client.main"
                       [":require"
-                       ["[]"
-                        "respo.core"
-                        ":refer"
-                        ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element" "gc-states!"]]
+                       ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
                        ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
                        ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]]],
                  :defs {"dispatch!" ["defn" "dispatch!" ["op" "op-data"]],
@@ -42,12 +39,10 @@
                                     [["target" [".querySelector" "js/document" "|#app"]]]
                                     ["falsify-stage!"
                                      "target"
-                                     ["render-element" ["comp-container" "@ref-store" "ssr-stages"] "ref-states"]
+                                     ["render-element" ["comp-container" "@ref-store" "ssr-stages"]]
                                      "dispatch!"]]]
                                   ["render-app!"]
-                                  ["add-watch" "ref-store" ":gc" ["fn" [] ["gc-states!" "ref-states"]]]
                                   ["add-watch" "ref-store" ":changes" "render-app!"]
-                                  ["add-watch" "ref-states" ":changes" "render-app!"]
                                   ["println" "|App started!"]],
                         "on-jsload!" ["defn"
                                       "on-jsload!"
@@ -60,13 +55,12 @@
                                        []
                                        ["let"
                                         [["target" [".querySelector" "js/document" "|#app"]]]
-                                        ["render!" ["comp-container" "@ref-store"] "target" "dispatch!" "ref-states"]]],
+                                        ["render!" ["comp-container" "@ref-store"] "target" "dispatch!"]]],
                         "ssr-stages" ["def"
                                       "ssr-stages"
                                       ["let"
                                        [["ssr-element" [".querySelector" "js/document" "|#ssr-stages"]]
                                         ["ssr-markup" [".getAttribute" "ssr-element" "|content"]]]
                                        ["read-string" "ssr-markup"]]],
-                        "ref-store" ["defonce" "ref-store" ["atom" ["{}"]]],
-                        "ref-states" ["defonce" "ref-states" ["atom" ["{}"]]]},
+                        "ref-store" ["defonce" "ref-store" ["atom" ["{}" [":states" ["{}"]]]]]},
                  :procs [["set!" [".-onload" "js/window"] "-main!"]]}}}

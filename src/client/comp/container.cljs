@@ -10,7 +10,7 @@
   (create-comp
    :container
    (fn [store]
-     (fn [state mutate!]
+     (fn [cursor]
        (div
         {:style (merge ui/global)}
         (comp-space "8px" nil)

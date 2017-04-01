@@ -21,15 +21,15 @@ First load dependencies:
 ```bash
 npm i
 webpack
-export boot_deps=`boot show -c`
+export deps=`boot show -c`
 # starting Boot is slow, sometimes I cache the result in a file
 ```
 
 Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
-env=dev lumo -Kc $boot_deps:src/ -i tasks/render.cljs
-lumo -Kc $boot_deps:src/ -i tasks/server.cljs
+env=dev lumo -Kc $deps:src/ -i tasks/render.cljs
+lumo -Kc $deps:src/ -i tasks/server.cljs
 # open another tab in terminal
 boot dev
 ```
@@ -38,7 +38,7 @@ Compile and optimize ClojureScript, generate HTML with revision:
 
 ```bash
 boot build-advanced
-lumo -Kc $boot_deps:src/ -i tasks/render.cljs
+lumo -Kc $deps:src/ -i tasks/render.cljs
 ```
 
 Package jar file and install locally:
@@ -56,7 +56,7 @@ boot deploy
 Get ClojureScript code:
 
 ```bash
-op=compile lumo -Kc $boot_deps:src/ -i tasks/server.cljs
+op=compile lumo -Kc $deps:src/ -i tasks/server.cljs
 ```
 
 ### Develop

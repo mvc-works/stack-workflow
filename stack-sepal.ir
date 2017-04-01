@@ -27,8 +27,14 @@
                       [":require"
                        ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
                        ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
-                       ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]]],
-                 :defs {"dispatch!" ["defn" "dispatch!" ["op" "op-data"]],
+                       ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]
+                       ["[]" "client.updater.core" ":refer" ["[]" "updater"]]]],
+                 :defs {"dispatch!" ["defn"
+                                     "dispatch!"
+                                     ["op" "op-data"]
+                                     ["let"
+                                      [["next-store" ["updater" "ref-store" "op" "op-data"]]]
+                                      ["reset!" "ref-store" "next-store"]]],
                         "-main!" ["defn"
                                   "-main!"
                                   []
@@ -43,7 +49,7 @@
                                      "dispatch!"]]]
                                   ["render-app!"]
                                   ["add-watch" "ref-store" ":changes" "render-app!"]
-                                  ["println" "|App started!"]],
+                                  ["println" "|App started."]],
                         "on-jsload!" ["defn"
                                       "on-jsload!"
                                       []
@@ -63,4 +69,13 @@
                                         ["ssr-markup" [".getAttribute" "ssr-element" "|content"]]]
                                        ["read-string" "ssr-markup"]]],
                         "ref-store" ["defonce" "ref-store" ["atom" ["{}" [":states" ["{}"]]]]]},
-                 :procs [["set!" [".-onload" "js/window"] "-main!"]]}}}
+                 :procs [["set!" [".-onload" "js/window"] "-main!"]]},
+         "updater.core" {:ns ["ns" "client.updater.core" [":require" ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]]],
+                         :defs {"updater" ["defn"
+                                           "updater"
+                                           ["store" "op" "op-data"]
+                                           ["case"
+                                            "op"
+                                            [":states" ["update" "store" ":states" ["mutate" "op-data"]]]
+                                            "store"]]},
+                         :procs []}}}

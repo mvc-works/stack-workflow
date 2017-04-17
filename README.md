@@ -29,7 +29,8 @@ Genetate HTML(`target/index.html`), watch and build ClojureScript:
 
 ```bash
 env=dev lumo -Kc $deps:src/ -i tasks/render.cljs
-lumo -Kc $deps:src/ -i tasks/server.cljs
+npm i -g stack-editor
+stack-editor
 # open another tab in terminal
 boot dev
 ```
@@ -56,7 +57,7 @@ boot deploy
 Get ClojureScript code:
 
 ```bash
-op=compile lumo -Kc $deps:src/ -i tasks/server.cljs
+op=compile stack-editor
 ```
 
 ### Develop

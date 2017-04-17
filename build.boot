@@ -3,7 +3,7 @@
   :asset-paths #{"assets/"}
   :resource-paths #{"polyfill" "src"}
   :dependencies '[[org.clojure/clojure       "1.8.0"       :scope "provided"]
-                  [org.clojure/clojurescript "1.9.473"     :scope "provided"]
+                  [org.clojure/clojurescript "1.9.521"     :scope "provided"]
                   [adzerk/boot-cljs          "1.7.228-1"   :scope "provided"]
                   [adzerk/boot-reload        "0.4.13"      :scope "provided"]
                   [cirru/boot-stack-server   "0.1.30"      :scope "provided"]

@@ -6,10 +6,6 @@
                   [org.clojure/clojurescript "1.9.521"     :scope "provided"]
                   [adzerk/boot-cljs          "1.7.228-1"   :scope "provided"]
                   [adzerk/boot-reload        "0.4.13"      :scope "provided"]
-                  [cirru/boot-stack-server   "0.1.30"      :scope "provided"]
-                  [andare                    "0.5.0"       :scope "provided"]
-                  [cumulo/shallow-diff       "0.1.3"       :scope "provided"]
-                  [fipp                      "0.6.9"       :scope "provided"]
                   [mvc-works/hsl             "0.1.2"]
                   [respo/ui                  "0.1.9"]
                   [respo                     "0.4.2"]])

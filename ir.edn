@@ -33,7 +33,7 @@
                                      "dispatch!"
                                      ["op" "op-data"]
                                      ["let"
-                                      [["next-store" ["updater" "ref-store" "op" "op-data"]]]
+                                      [["next-store" ["updater" "@ref-store" "op" "op-data"]]]
                                       ["reset!" "ref-store" "next-store"]]],
                         "-main!" ["defn"
                                   "-main!"

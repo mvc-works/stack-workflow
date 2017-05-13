@@ -8,7 +8,7 @@
 (defonce ref-store (atom {:states {}}))
 
 (defn dispatch! [op op-data]
-  (let [next-store (updater ref-store op op-data)] (reset! ref-store next-store)))
+  (let [next-store (updater @ref-store op op-data)] (reset! ref-store next-store)))
 
 (defn render-app! []
   (let [target (.querySelector js/document "#app")]

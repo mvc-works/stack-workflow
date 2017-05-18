@@ -12,6 +12,14 @@
   },
   "author": "jiyinyiyong",
   "license": "MIT",
+  "shadow-cljs": {
+    "source-paths": ["src"],
+    "dependencies": [
+      ["mvc-works/hsl",             "0.1.2"],
+      ["respo/ui",                  "0.1.9"],
+      ["respo",                     "0.4.2"]
+    ]
+  },
   "devDependencies": {
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",

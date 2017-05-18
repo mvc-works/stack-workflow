@@ -49,7 +49,12 @@
                                      "dispatch!"]]]
                                   ["render-app!"]
                                   ["add-watch" "ref-store" ":changes" "render-app!"]
-                                  ["println" "|App started."]],
+                                  ["println" "|App started."]
+                                  ["if"
+                                   ["fn?" "js/module.hot.accept"]
+                                   ["do"
+                                    [".log" "js/console" "|Accept changes!"]
+                                    ["js/module.hot.accept" "|./client.comp.container.js" "on-jsload!"]]]],
                         "on-jsload!" ["defn"
                                       "on-jsload!"
                                       []

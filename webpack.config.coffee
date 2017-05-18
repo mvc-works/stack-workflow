@@ -1,4 +1,5 @@
 
+path = require 'path'
 ExtractTextPlugin = require 'extract-text-webpack-plugin'
 
 module.exports =
@@ -6,7 +7,7 @@ module.exports =
     style: 'respo-ui'
     main: 'shadow-cljs/client.main.js'
   output:
-    path: './target/'
+    path: path.join __dirname, './target/'
     filename: '[name].js'
   module:
     rules: [

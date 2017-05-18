@@ -13,20 +13,34 @@
   "author": "jiyinyiyong",
   "license": "MIT",
   "shadow-cljs": {
-    "source-paths": ["src"],
+    "source-paths": [
+      "src",
+      "polyfill"
+    ],
     "dependencies": [
-      ["mvc-works/hsl",             "0.1.2"],
-      ["respo/ui",                  "0.1.9"],
-      ["respo",                     "0.4.2"]
+      [
+        "mvc-works/hsl",
+        "0.1.2"
+      ],
+      [
+        "respo/ui",
+        "0.1.9"
+      ],
+      [
+        "respo",
+        "0.4.2"
+      ]
     ]
   },
   "devDependencies": {
+    "coffee-script": "^1.12.6",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.11.0",
     "respo-ui": "^0.1.2",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.7",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.5"
   }
 }

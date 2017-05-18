@@ -1,5 +1,5 @@
 
-(ns ssr-stages.boot
+(ns client.render
   (:require
     [respo.alias :refer [html head title script style meta' div link body]]
     [respo.render.html :refer [make-html make-string]]
@@ -33,7 +33,8 @@
 
 (defn spit [file-name content]
   (let [fs (js/require "fs")]
-    (.writeFileSync fs file-name content)))
+    (.writeFileSync fs file-name content)
+    (println "Wrote to:" file-name)))
 
 (defn -main []
   (if (= js/process.env.env "dev")

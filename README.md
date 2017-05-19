@@ -14,33 +14,57 @@ Features:
 * Fonts and icons packed in Webpack
 * Compilation and minification
 
-### Develop
-
-First load dependencies:
+### Install dependencies
 
 ```bash
-npm i
-webpack
-export deps=`boot show -c`
-# starting Boot is slow, sometimes I cache the result in a file
+npm i -g stack-editor
+npm i -g shadow-cljs
+yarn
+boot # for fetch deps on Clojars
 ```
 
-Genetate HTML(`target/index.html`), watch and build ClojureScript:
+Generate `$deps` that lumo needs:
+
+```bash
+export deps=`boot show -c`
+```
+
+### Develop
+
+Generate development HTML and CSS:
 
 ```bash
 env=dev lumo -Kc $deps:src/ -i tasks/render.cljs
-npm i -g stack-editor
-stack-editor
-# open another tab in terminal
-boot dev
+webpack
 ```
+
+Run compilers to compile ClojureScript -> JavaScript -> js bundles:
+
+```bash
+shadow-cljs --dev
+# open another tab in terminal
+yarn run dev
+```
+
+Start my infancy editor:
+
+```bash
+stack-editor
+```
+
+### Build apps
 
 Compile and optimize ClojureScript, generate HTML with revision:
 
 ```bash
 boot build-advanced
 lumo -Kc $deps:src/ -i tasks/render.cljs
+webpack
 ```
+
+### Workflow
+
+Workflow https://github.com/mvc-works/stack-workflow
 
 Package jar file and install locally:
 
@@ -59,10 +83,6 @@ Get ClojureScript code:
 ```bash
 op=compile stack-editor
 ```
-
-### Develop
-
-Workflow https://github.com/mvc-works/stack-workflow
 
 ### License
 

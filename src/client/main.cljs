@@ -14,8 +14,6 @@
   (let [target (.querySelector js/document "#app")]
     (render! (comp-container @ref-store) target dispatch!)))
 
-(defn on-jsload! [] (clear-cache!) (render-app!) (println "Code updated."))
-
 (def ssr-stages
   (let [ssr-element (.querySelector js/document "#ssr-stages")
         ssr-markup (.getAttribute ssr-element "content")]
@@ -31,10 +29,8 @@
        dispatch!)))
   (render-app!)
   (add-watch ref-store :changes render-app!)
-  (println "App started.")
-  (if (fn? js/module.hot.accept)
-    (do
-     (.log js/console "Accept changes!")
-     (js/module.hot.accept "./client.comp.container.js" on-jsload!))))
+  (println "App started."))
+
+(defn on-jsload! [] (clear-cache!) (render-app!) (println "Code updated."))
 
 (set! (.-onload js/window) -main!)

@@ -5,7 +5,7 @@ ExtractTextPlugin = require 'extract-text-webpack-plugin'
 module.exports =
   entry:
     style: 'respo-ui'
-    main: 'shadow-cljs/client.main.js'
+    main: './bin/page.js'
   output:
     path: path.join __dirname, './target/'
     filename: '[name].js'

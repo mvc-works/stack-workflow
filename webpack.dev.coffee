@@ -6,9 +6,7 @@ webpack = require 'webpack'
 module.exports =
   entry:
     style: 'respo-ui'
-    main: [
-      'shadow-cljs/client.main.js'
-    ]
+    main: './bin/page.js'
   devServer:
     hot: true
     contentBase: resolve(__dirname, 'target')

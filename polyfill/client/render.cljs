@@ -21,7 +21,7 @@
         (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
       (body {}
         (div {:attrs {:id "app" :innerHTML html-content}})
-        (script {:attrs {:src "main.js"}})))))
+        (script {:attrs {:src (if (:build? data) "main.js" "http://localhost:8080/main.js")}})))))
 
 (defn generate-html []
   (let [ tree (comp-container {} #{:shell})
@@ -29,7 +29,7 @@
     (html-dsl {:build? true} html-content #{:shell})))
 
 (defn generate-empty-html []
-  (html-dsl {:build? true} "" {}))
+  (html-dsl {:build? false} "" {}))
 
 (defn spit [file-name content]
   (let [fs (js/require "fs")]

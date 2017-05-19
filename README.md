@@ -2,9 +2,7 @@
 Stack Workflow
 ----
 
-Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, [Lumo][lumo]...
-
-[lumo]: https://github.com/anmonteiro/lumo/tree/master/src/cljs/lumo
+Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, shadow-cljs...
 
 Features:
 
@@ -20,21 +18,20 @@ Features:
 npm i -g stack-editor
 npm i -g shadow-cljs
 yarn
-boot # for fetch deps on Clojars
-```
-
-Generate `$deps` that lumo needs:
-
-```bash
-export deps=`boot show -c`
 ```
 
 ### Develop
 
+Watch compiling ClojureScript to `node_modules/shadow-cljs/`:
+
+```bash
+shadow-cljs --dev
+```
+
 Generate development HTML and CSS:
 
 ```bash
-env=dev lumo -Kc $deps:src/ -i tasks/render.cljs
+env=dev node bin/render.js
 webpack
 ```
 
@@ -57,8 +54,8 @@ stack-editor
 Compile and optimize ClojureScript, generate HTML with revision:
 
 ```bash
-boot build-advanced
-lumo -Kc $deps:src/ -i tasks/render.cljs
+shadow-cljs --once
+env=dev node bin/render.js
 webpack
 ```
 

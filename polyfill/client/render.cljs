@@ -5,40 +5,49 @@
     [respo.render.html :refer [make-html make-string]]
     [client.comp.container :refer [comp-container]]))
 
-(defn html-dsl [data html-content ssr-stages]
+(def fs (js/require "fs"))
+
+(defn slurp [x]
+  (fs.readFileSync x "utf8"))
+
+(defn spit [file-name content]
+  (.writeFileSync fs file-name content)
+  (println "Wrote to:" file-name))
+
+(defn html-dsl [config resources html-content]
   (make-html
     (html {}
       (head {}
         (title {:attrs {:innerHTML "Stack Workflow"}})
         (link {:attrs {:rel "icon" :type "image/png" :href "http://logo.mvc-works.org/mvc.png"}})
-        (link {:attrs {:rel "stylesheet" :type "text/css" :href "style.css"}})
-        (link (:attrs {:rel "manifest" :href "manifest.json"}))
         (meta' {:attrs {:charset "utf-8"}})
         (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
-        (meta' {:attrs {:id "ssr-stages" :content (pr-str ssr-stages)}})
-        (style {:attrs {:innerHTML "body {margin: 0;}"}})
-        (style {:attrs {:innerHTML "body * {box-sizing: border-box;}"}})
-        (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
+        (meta' {:attrs {:id "config" :type "text/edn" :content (pr-str config)}}))
+        (if (contains? resources :css)
+          (link {:attrs {:rel "stylesheet" :type "text/css" :href (:css resources)}}))
+        (link (:attrs {:rel "manifest" :href "manifest.json"}))
       (body {}
         (div {:attrs {:id "app" :innerHTML html-content}})
-        (script {:attrs {:src (if (:build? data) "main.js" "http://localhost:8080/main.js")}})))))
+        (if (contains? resources :vendor)
+          (script {:attrs {:src (:vendor resources)}}))
+        (script {:attrs {:src (:main resources)}})))))
 
 (defn generate-html []
   (let [ tree (comp-container {} #{:shell})
-         html-content (make-string tree)]
-    (html-dsl {:build? true} html-content #{:shell})))
+         html-content (make-string tree)
+         resources (let [manifest (js/JSON.parse (slurp "dist/manifest.json"))]
+                      {:css (aget manifest "main.css")
+                       :main (aget manifest "main.js")
+                       :vendor (aget manifest "vendor.js")})]
+    (html-dsl {:build? true} resources html-content)))
 
 (defn generate-empty-html []
-  (html-dsl {:build? false} "" {}))
-
-(defn spit [file-name content]
-  (let [fs (js/require "fs")]
-    (.writeFileSync fs file-name content)
-    (println "Wrote to:" file-name)))
+  (html-dsl {:build? false} {:main "http://localhost:8080/main.js"} ""))
 
 (defn -main []
-  (if (= js/process.env.env "dev")
-    (spit "target/dev.html" (generate-empty-html))
-    (spit "target/index.html" (generate-html))))
+  (spit "dist/index.html"
+    (if (= js/process.env.env "dev")
+      (generate-empty-html)
+      (generate-html))))
 
 (-main)

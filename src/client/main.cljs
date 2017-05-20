@@ -14,18 +14,18 @@
   (let [target (.querySelector js/document "#app")]
     (render! (comp-container @ref-store) target dispatch!)))
 
-(def ssr-stages
-  (let [ssr-element (.querySelector js/document "#ssr-stages")
-        ssr-markup (.getAttribute ssr-element "content")]
-    (read-string ssr-markup)))
+(def app-config
+  (let [config-element (.querySelector js/document "#config")
+        config-markup (.getAttribute config-element "content")]
+    (read-string config-markup)))
 
 (defn -main! []
   (enable-console-print!)
-  (if (not (empty? ssr-stages))
+  (if (:build? app-config)
     (let [target (.querySelector js/document "#app")]
       (falsify-stage!
        target
-       (render-element (comp-container @ref-store ssr-stages))
+       (render-element (comp-container @ref-store app-config))
        dispatch!)))
   (render-app!)
   (add-watch ref-store :changes render-app!)

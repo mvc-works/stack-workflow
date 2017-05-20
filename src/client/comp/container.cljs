@@ -14,4 +14,4 @@
        (div
         {:style (merge ui/global)}
         (comp-space "8px" nil)
-        (div {:style ui/button} (comp-text "cool 4" nil)))))))
+        (div {:style ui/button} (comp-text "Demo" nil)))))))

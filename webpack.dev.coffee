@@ -5,14 +5,13 @@ webpack = require 'webpack'
 
 module.exports =
   entry:
-    style: 'respo-ui'
-    main: './bin/page.js'
+    main: './entry/page'
   devServer:
     hot: true
-    contentBase: resolve(__dirname, 'target')
+    quiet: true
+    contentBase: resolve(__dirname, 'dist')
     publicPath: '/'
   output:
-    path: path.join __dirname, '../target/'
     filename: '[name].js'
   module:
     rules: [

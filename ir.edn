@@ -1,0 +1,81 @@
+{:package "client",
+ :files {"comp.container" {:ns ["ns"
+                                "client.comp.container"
+                                [":require"
+                                 ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
+                                 ["[]" "respo-ui.style" ":as" "ui"]
+                                 ["[]" "respo.alias" ":refer" ["[]" "create-comp" "div" "span"]]
+                                 ["[]" "respo.comp.space" ":refer" ["[]" "comp-space"]]
+                                 ["[]" "respo.comp.text" ":refer" ["[]" "comp-text"]]]],
+                           :defs {"comp-container" ["def"
+                                                    "comp-container"
+                                                    ["create-comp"
+                                                     ":container"
+                                                     ["fn"
+                                                      ["store"]
+                                                      ["fn"
+                                                       ["cursor"]
+                                                       ["div"
+                                                        ["{}" [":style" ["merge" "ui/global"]]]
+                                                        ["comp-space" "|8px" "nil"]
+                                                        ["div"
+                                                         ["{}" [":style" "ui/button"]]
+                                                         ["comp-text" "|Demo" "nil"]]]]]]]},
+                           :procs []},
+         "main" {:ns ["ns"
+                      "client.main"
+                      [":require"
+                       ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
+                       ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
+                       ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]
+                       ["[]" "client.updater.core" ":refer" ["[]" "updater"]]]],
+                 :defs {"dispatch!" ["defn"
+                                     "dispatch!"
+                                     ["op" "op-data"]
+                                     ["let"
+                                      [["next-store" ["updater" "ref-store" "op" "op-data"]]]
+                                      ["reset!" "ref-store" "next-store"]]],
+                        "-main!" ["defn"
+                                  "-main!"
+                                  []
+                                  ["enable-console-print!"]
+                                  ["if"
+                                   [":build?" "app-config"]
+                                   ["let"
+                                    [["target" [".querySelector" "js/document" "|#app"]]]
+                                    ["falsify-stage!"
+                                     "target"
+                                     ["render-element" ["comp-container" "@ref-store" "app-config"]]
+                                     "dispatch!"]]]
+                                  ["render-app!"]
+                                  ["add-watch" "ref-store" ":changes" "render-app!"]
+                                  ["println" "|App started."]],
+                        "on-jsload!" ["defn"
+                                      "on-jsload!"
+                                      []
+                                      ["clear-cache!"]
+                                      ["render-app!"]
+                                      ["println" "|Code updated."]],
+                        "render-app!" ["defn"
+                                       "render-app!"
+                                       []
+                                       ["let"
+                                        [["target" [".querySelector" "js/document" "|#app"]]]
+                                        ["render!" ["comp-container" "@ref-store"] "target" "dispatch!"]]],
+                        "ref-store" ["defonce" "ref-store" ["atom" ["{}" [":states" ["{}"]]]]],
+                        "app-config" ["def"
+                                      "app-config"
+                                      ["let"
+                                       [["config-element" [".querySelector" "js/document" "|#config"]]
+                                        ["config-markup" [".getAttribute" "config-element" "|content"]]]
+                                       ["read-string" "config-markup"]]]},
+                 :procs [["set!" [".-onload" "js/window"] "-main!"]]},
+         "updater.core" {:ns ["ns" "client.updater.core" [":require" ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]]],
+                         :defs {"updater" ["defn"
+                                           "updater"
+                                           ["store" "op" "op-data"]
+                                           ["case"
+                                            "op"
+                                            [":states" ["update" "store" ":states" ["mutate" "op-data"]]]
+                                            "store"]]},
+                         :procs []}}}

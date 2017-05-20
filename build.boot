@@ -1,4 +1,7 @@
 
+; prefer using yarn to dev/build
+; but still useful as an alternative
+
 (set-env!
   :asset-paths #{"assets/"}
   :resource-paths #{"polyfill" "src"}

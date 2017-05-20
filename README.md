@@ -4,60 +4,41 @@ Stack Workflow
 
 Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, shadow-cljs...
 
-Features:
+### Usage
 
-* Program with Stack Editor
-* Hot code swapping
-* Basic UI styles
-* Fonts and icons packed in Webpack
-* Compilation and minification
+Compilation steps:
 
-### Install dependencies
+```text
+ir.edn  -> src/           -> compiled/    -> dist/
+Cirru   -> ClojureScript  -> JavaScript   -> App
+```
+
+Dependencies:
 
 ```bash
+# Node.js , JVM
 npm i -g stack-editor
 npm i -g shadow-cljs
 yarn
 ```
 
-### Develop
-
-Watch compiling ClojureScript to `node_modules/shadow-cljs/`:
-
-```bash
-shadow-cljs --dev
-```
-
-Generate development HTML and CSS:
-
-```bash
-env=dev node bin/render.js
-webpack
-```
-
-Run compilers to compile ClojureScript -> JavaScript -> js bundles:
-
-```bash
-shadow-cljs --dev
-# open another tab in terminal
-yarn run dev
-```
-
-Start my infancy editor:
+To run in development:
 
 ```bash
 stack-editor
+# another tty
+yarn cljs
+# another tty
+yarn dev
 ```
 
-### Build apps
-
-Compile and optimize ClojureScript, generate HTML with revision:
+To build:
 
 ```bash
-shadow-cljs --once
-env=dev node bin/render.js
-webpack
+yarn build
 ```
+
+Assets would be like: http://repo.tiye.me/mvc-works/stack-workflow/
 
 ### Workflow
 

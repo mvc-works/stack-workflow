@@ -1,4 +1,7 @@
 
+require('respo-ui');
+require('./main.css');
+
 var main = require('shadow-cljs/client.main.js');
 
 if (module.hot) {

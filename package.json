@@ -4,7 +4,15 @@
   "description": "Stack Workflow",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.dev.coffee",
+    "cljs-once": "shadow-cljs --once",
+    "cljs": "shadow-cljs --dev",
+    "html-dev": "env=dev node ./entry/html.js",
+    "html": "node ./entry/html.js",
+    "hmr": "webpack-dev-server --config webpack.dev.coffee",
+    "tiye": "bash entry/rsync.sh",
+    "webpack": "webpack",
+    "dev": "yarn html-dev && yarn hmr",
+    "build": "yarn cljs-once && yarn webpack && yarn html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -39,9 +47,12 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.11.0",
     "respo-ui": "^0.1.2",
+    "shadow-cljs": "^0.5.0",
     "style-loader": "^0.16.1",
+    "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.7",
     "webpack": "^2.5.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "webpack-manifest-plugin": "^1.1.0"
   }
 }

@@ -8,9 +8,11 @@ module.exports =
     main: './entry/page'
   devServer:
     hot: true
-    quiet: true
+    clientLogLevel: 'info'
+    stats: 'errors-only'
     contentBase: resolve(__dirname, 'dist')
     publicPath: '/'
+    host: '0.0.0.0'
   output:
     filename: '[name].js'
   module:

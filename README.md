@@ -2,45 +2,47 @@
 Stack Workflow
 ----
 
-Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, [Lumo][lumo]...
+Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, shadow-cljs...
 
-[lumo]: https://github.com/anmonteiro/lumo/tree/master/src/cljs/lumo
+### Usage
 
-Features:
+Compilation steps:
 
-* Program with Stack Editor
-* Hot code swapping
-* Basic UI styles
-* Fonts and icons packed in Webpack
-* Compilation and minification
-
-### Develop
-
-First load dependencies:
-
-```bash
-npm i
-webpack
-export deps=`boot show -c`
-# starting Boot is slow, sometimes I cache the result in a file
+```text
+ir.edn  -> src/           -> compiled/    -> dist/
+Cirru   -> ClojureScript  -> JavaScript   -> App
 ```
 
-Genetate HTML(`target/index.html`), watch and build ClojureScript:
+Dependencies:
 
 ```bash
-env=dev lumo -Kc $deps:src/ -i tasks/render.cljs
+# Node.js , JVM
 npm i -g stack-editor
-stack-editor
-# open another tab in terminal
-boot dev
+npm i -g shadow-cljs
+yarn
 ```
 
-Compile and optimize ClojureScript, generate HTML with revision:
+To run in development:
 
 ```bash
-boot build-advanced
-lumo -Kc $deps:src/ -i tasks/render.cljs
+stack-editor
+# another tty
+yarn cljs
+# another tty
+yarn dev
 ```
+
+To build:
+
+```bash
+yarn build
+```
+
+Assets would be like: http://repo.tiye.me/mvc-works/stack-workflow/
+
+### Workflow
+
+Workflow https://github.com/mvc-works/stack-workflow
 
 Package jar file and install locally:
 
@@ -59,10 +61,6 @@ Get ClojureScript code:
 ```bash
 op=compile stack-editor
 ```
-
-### Develop
-
-Workflow https://github.com/mvc-works/stack-workflow
 
 ### License
 

@@ -40,12 +40,12 @@
                                   []
                                   ["enable-console-print!"]
                                   ["if"
-                                   ["not" ["empty?" "ssr-stages"]]
+                                   [":build?" "app-config"]
                                    ["let"
                                     [["target" [".querySelector" "js/document" "|#app"]]]
                                     ["falsify-stage!"
                                      "target"
-                                     ["render-element" ["comp-container" "@ref-store" "ssr-stages"]]
+                                     ["render-element" ["comp-container" "@ref-store" "app-config"]]
                                      "dispatch!"]]]
                                   ["render-app!"]
                                   ["add-watch" "ref-store" ":changes" "render-app!"]
@@ -62,13 +62,13 @@
                                        ["let"
                                         [["target" [".querySelector" "js/document" "|#app"]]]
                                         ["render!" ["comp-container" "@ref-store"] "target" "dispatch!"]]],
-                        "ssr-stages" ["def"
-                                      "ssr-stages"
+                        "ref-store" ["defonce" "ref-store" ["atom" ["{}" [":states" ["{}"]]]]],
+                        "app-config" ["def"
+                                      "app-config"
                                       ["let"
-                                       [["ssr-element" [".querySelector" "js/document" "|#ssr-stages"]]
-                                        ["ssr-markup" [".getAttribute" "ssr-element" "|content"]]]
-                                       ["read-string" "ssr-markup"]]],
-                        "ref-store" ["defonce" "ref-store" ["atom" ["{}" [":states" ["{}"]]]]]},
+                                       [["config-element" [".querySelector" "js/document" "|#config"]]
+                                        ["config-markup" [".getAttribute" "config-element" "|content"]]]
+                                       ["read-string" "config-markup"]]]},
                  :procs [["set!" [".-onload" "js/window"] "-main!"]]},
          "updater.core" {:ns ["ns" "client.updater.core" [":require" ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]]],
                          :defs {"updater" ["defn"

@@ -7,7 +7,6 @@ module.exports =
   entry:
     main: './entry/page'
   devServer:
-    hot: true
     clientLogLevel: 'info'
     stats: 'errors-only'
     contentBase: resolve(__dirname, 'dist')

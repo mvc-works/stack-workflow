@@ -8,7 +8,7 @@
     "cljs": "shadow-cljs --dev",
     "html-dev": "env=dev node ./entry/html.js",
     "html": "node ./entry/html.js",
-    "hmr": "webpack-dev-server --config webpack.dev.coffee",
+    "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
     "tiye": "bash entry/rsync.sh",
     "webpack": "webpack",
     "dev": "yarn html-dev && yarn hmr",
@@ -26,6 +26,7 @@
       "src",
       "polyfill"
     ],
+    "output-dir": "compiled",
     "dependencies": [
       [
         "mvc-works/hsl",
@@ -47,7 +48,7 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.11.0",
     "respo-ui": "^0.1.2",
-    "shadow-cljs": "^0.5.0",
+    "shadow-cljs": "^0.5.1",
     "style-loader": "^0.16.1",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.7",

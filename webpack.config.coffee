@@ -6,7 +6,6 @@ ManifestPlugin = require 'webpack-manifest-plugin'
 UglifyJSPlugin = require 'uglifyjs-webpack-plugin'
 ExtractTextPlugin = require 'extract-text-webpack-plugin'
 
-
 module.exports =
   entry:
     main: './entry/page'

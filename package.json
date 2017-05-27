@@ -10,7 +10,7 @@
     "html": "node ./entry/html.js",
     "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
     "tiye": "bash entry/rsync.sh",
-    "webpack": "webpack",
+    "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
     "del": "rm -rf dist/*",
     "build": "yarn cljs-once && yarn del && yarn webpack && yarn html",

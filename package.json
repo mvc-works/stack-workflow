@@ -12,7 +12,8 @@
     "tiye": "bash entry/rsync.sh",
     "webpack": "webpack",
     "dev": "yarn html-dev && yarn hmr",
-    "build": "yarn cljs-once && yarn webpack && yarn html",
+    "del": "rm -rf dist/*",
+    "build": "yarn cljs-once && yarn del && yarn webpack && yarn html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

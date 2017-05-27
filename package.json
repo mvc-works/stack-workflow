@@ -4,7 +4,7 @@
   "description": "Stack Workflow",
   "main": "index.js",
   "scripts": {
-    "cljs-once": "shadow-cljs --once",
+    "cljs-once": "shadow-cljs --release",
     "cljs": "shadow-cljs --dev",
     "html-dev": "env=dev node ./entry/html.js",
     "html": "node ./entry/html.js",

@@ -1,2 +1,2 @@
 
-require('shadow-cljs/client.render.js');
+require('../compiled/client.render.js');

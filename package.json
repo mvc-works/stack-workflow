@@ -6,15 +6,14 @@
   "scripts": {
     "cljs-once": "shadow-cljs --release",
     "cljs": "shadow-cljs --dev",
-    "html-dev": "env=dev node ./entry/html.js",
-    "html": "node ./entry/html.js",
+    "html-dev": "env=dev node compiled/client.render.js",
+    "html": "node compiled/client.render.js",
     "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
     "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
     "del": "rm -rf dist/*",
-    "build": "yarn cljs-once && yarn del && yarn webpack && yarn html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn cljs-once && yarn del && yarn webpack && yarn html"
   },
   "repository": {
     "type": "git",

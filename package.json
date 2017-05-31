@@ -4,11 +4,9 @@
   "description": "Stack Workflow",
   "main": "index.js",
   "scripts": {
-    "cljs-script": "yarn env-node && shadow-cljs --once",
-    "cljs-release": "yarn env-web && shadow-cljs --release",
-    "cljs": "yarn env-node && shadow-cljs --dev",
-    "env-node": "target=nodejs coffee entry/env.coffee",
-    "env-web": "coffee entry/env.coffee",
+    "cljs-once": "shadow-cljs --once",
+    "cljs-release": "shadow-cljs --release",
+    "cljs": "shadow-cljs --dev",
     "html-dev": "env=dev node compiled/client.render.js",
     "html": "node compiled/client.render.js",
     "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
@@ -16,7 +14,7 @@
     "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
     "del": "rm -r dist/*",
-    "build": "yarn del && yarn cljs-release && yarn webpack && yarn cljs-script && yarn html"
+    "build": "yarn del && yarn cljs-release && yarn webpack && yarn cljs-once && yarn html"
   },
   "repository": {
     "type": "git",

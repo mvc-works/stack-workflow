@@ -29,8 +29,9 @@
           (link {:attrs {:rel "stylesheet" :type "text/css" :href (:css resources)}})))
       (body {}
         (div {:attrs {:id "app" :innerHTML html-content}})
-        (if (contains? resources :vendor)
-          (script {:attrs {:src (:vendor resources)}}))
+        (if (:build? config)
+          (script {:attrs {:src (:vendor resources)}})
+          (script {:attrs {:src (:dev resources)}}))
         (script {:attrs {:src (:main resources)}})))))
 
 (defn generate-html []
@@ -43,7 +44,10 @@
     (html-dsl {:build? true} resources html-content)))
 
 (defn generate-empty-html []
-  (html-dsl {:build? false} {:main "http://localhost:8080/main.js"} ""))
+  (html-dsl {:build? false}
+    {:main "http://localhost:8080/main.js"
+     :dev "http://localhost:8080/main-dev.js"}
+    ""))
 
 (defn -main []
   (spit "dist/index.html"

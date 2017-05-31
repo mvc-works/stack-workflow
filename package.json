@@ -4,16 +4,17 @@
   "description": "Stack Workflow",
   "main": "index.js",
   "scripts": {
-    "cljs-once": "shadow-cljs --release",
-    "cljs": "shadow-cljs --dev",
+    "cljs-npm": "shadow-cljs -b npm --once",
+    "cljs-once": "shadow-cljs -b app --release",
+    "cljs": "shadow-cljs -b dev --dev",
     "html-dev": "env=dev node compiled/client.render.js",
     "html": "node compiled/client.render.js",
     "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
     "webpack": "webpack --hide-modules --progress",
-    "dev": "yarn html-dev && yarn hmr",
-    "del": "rm -rf dist/*",
-    "build": "yarn cljs-once && yarn del && yarn webpack && yarn html"
+    "dev": "yarn cljs-npm && yarn html-dev && yarn hmr",
+    "del": "rm -r dist/*",
+    "build": "yarn del && yarn cljs-once && yarn webpack && yarn html"
   },
   "repository": {
     "type": "git",
@@ -44,11 +45,11 @@
   },
   "devDependencies": {
     "coffee-script": "^1.12.6",
-    "css-loader": "^0.28.3",
+    "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.11.0",
     "respo-ui": "^0.1.2",
-    "shadow-cljs": "^0.6.0",
+    "shadow-cljs": "^0.7.0",
     "style-loader": "^0.18.1",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.7",

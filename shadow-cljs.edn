@@ -1,5 +1,14 @@
-[{:id :npm
+[{:id :dev
+  :target :browser
+  :modules {:main-dev {:entries [client.main]}}
+  :output-dir "compiled/"
+  :public-dir "dist/"
+  :public-path "http://localhost:8080/"
+  :devtools {:after-load client.main/on-jsload!}}
+ {:id :npm
+  :target :npm-module
+  :output-dir "compiled"}
+ {:id :app
   :target :npm-module
   :output-dir "compiled"
-  :compiler-options
-    {:externs ["entry/externs.js"]}}]
+  :compiler-options {:externs ["entry/externs.js"]}}]

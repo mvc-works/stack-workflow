@@ -6,8 +6,6 @@ webpack = require 'webpack'
 module.exports =
   entry:
     main: './entry/page'
-  watchOptions:
-    ignored: /compiled/
   devServer:
     clientLogLevel: 'info'
     stats: 'errors-only'

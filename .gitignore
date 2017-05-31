@@ -2,9 +2,4 @@
 /target/
 /compiled
 /dist
-/.nrepl*
-
 /node_modules
-
-.lumo_cache
-/public

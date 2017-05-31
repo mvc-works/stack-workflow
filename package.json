@@ -4,17 +4,19 @@
   "description": "Stack Workflow",
   "main": "index.js",
   "scripts": {
-    "cljs-npm": "shadow-cljs -b npm --once",
-    "cljs-once": "shadow-cljs -b app --release",
-    "cljs": "shadow-cljs -b dev --dev",
+    "cljs-script": "yarn env-node && shadow-cljs --once",
+    "cljs-release": "yarn env-web && shadow-cljs --release",
+    "cljs": "yarn env-node && shadow-cljs --dev",
+    "env-node": "target=nodejs coffee entry/env.coffee",
+    "env-web": "coffee entry/env.coffee",
     "html-dev": "env=dev node compiled/client.render.js",
     "html": "node compiled/client.render.js",
     "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
     "webpack": "webpack --hide-modules --progress",
-    "dev": "yarn cljs-npm && yarn html-dev && yarn hmr",
+    "dev": "yarn html-dev && yarn hmr",
     "del": "rm -r dist/*",
-    "build": "yarn del && yarn cljs-once && yarn webpack && yarn html"
+    "build": "yarn del && yarn cljs-release && yarn webpack && yarn cljs-script && yarn html"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,24 @@
   },
   "author": "jiyinyiyong",
   "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.12.6",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.11.0",
+    "respo-ui": "^0.1.2",
+    "shadow-cljs": "^0.7.0",
+    "style-loader": "^0.18.1",
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-manifest-plugin": "^1.1.0"
+  },
   "shadow-cljs": {
     "source-paths": [
-      "src",
-      "polyfill"
+      "polyfill",
+      "src"
     ],
     "output-dir": "compiled",
     "dependencies": [
@@ -42,19 +58,5 @@
         "0.4.2"
       ]
     ]
-  },
-  "devDependencies": {
-    "coffee-script": "^1.12.6",
-    "css-loader": "^0.28.4",
-    "extract-text-webpack-plugin": "^2.0.0-beta.4",
-    "file-loader": "^0.11.0",
-    "respo-ui": "^0.1.2",
-    "shadow-cljs": "^0.7.0",
-    "style-loader": "^0.18.1",
-    "uglifyjs-webpack-plugin": "^0.4.3",
-    "url-loader": "^0.5.7",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5",
-    "webpack-manifest-plugin": "^1.1.0"
   }
 }

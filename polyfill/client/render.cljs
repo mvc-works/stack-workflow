@@ -30,8 +30,7 @@
       (body {}
         (div {:attrs {:id "app" :innerHTML html-content}})
         (if (:build? config)
-          (script {:attrs {:src (:vendor resources)}})
-          (script {:attrs {:src (:dev resources)}}))
+          (script {:attrs {:src (:vendor resources)}}))
         (script {:attrs {:src (:main resources)}})))))
 
 (defn generate-html []
@@ -44,10 +43,7 @@
     (html-dsl {:build? true} resources html-content)))
 
 (defn generate-empty-html []
-  (html-dsl {:build? false}
-    {:main "/main.js"
-     :dev "/dev/main-dev.js"}
-    ""))
+  (html-dsl {:build? false} {:main "/main.js"} ""))
 
 (defn -main []
   (spit "dist/index.html"

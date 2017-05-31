@@ -1,13 +1,3 @@
-[{:id :dev
-  :target :browser
-  :modules {:main-dev {:entries [client.main]}}
-  :public-dir "dist/dev/"
-  :public-path "/dev/"
-  :devtools {:after-load client.main/on-jsload!}}
- {:id :npm
+[{:id :app
   :target :npm-module
-  :output-dir "compiled"}
- {:id :app
-  :target :npm-module
-  :output-dir "compiled"
-  :compiler-options {:externs ["entry/externs.js"]}}]
+  :output-dir "compiled"}]

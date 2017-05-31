@@ -9,8 +9,8 @@ Personal project template based on Respo, Boot, ClojureScript, Cirru Sepal, shad
 Compilation steps:
 
 ```text
-ir.edn  -> src/           -> compiled/    -> dist/
 Cirru   -> ClojureScript  -> JavaScript   -> App
+ir.edn     src/              compiled/       dist/
 ```
 
 Dependencies:
@@ -18,7 +18,6 @@ Dependencies:
 ```bash
 # Node.js , JVM
 npm i -g stack-editor
-npm i -g shadow-cljs
 yarn
 ```
 
@@ -36,6 +35,7 @@ To build:
 
 ```bash
 yarn build
+# outputs to dist/
 ```
 
 Assets would be like: http://repo.tiye.me/mvc-works/stack-workflow/

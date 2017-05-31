@@ -1,9 +1,8 @@
 [{:id :dev
   :target :browser
   :modules {:main-dev {:entries [client.main]}}
-  :output-dir "compiled/"
-  :public-dir "dist/"
-  :public-path "http://localhost:8080/"
+  :public-dir "dist/dev/"
+  :public-path "/dev/"
   :devtools {:after-load client.main/on-jsload!}}
  {:id :npm
   :target :npm-module

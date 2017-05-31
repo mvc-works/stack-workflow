@@ -45,8 +45,8 @@
 
 (defn generate-empty-html []
   (html-dsl {:build? false}
-    {:main "http://localhost:8080/main.js"
-     :dev "http://localhost:8080/main-dev.js"}
+    {:main "/main.js"
+     :dev "/dev/main-dev.js"}
     ""))
 
 (defn -main []

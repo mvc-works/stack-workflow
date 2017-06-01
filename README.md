@@ -10,7 +10,7 @@ Compilation steps:
 
 ```text
 Cirru   -> ClojureScript  -> JavaScript   -> App
-ir.edn     src/              compiled/       dist/
+ir.edn     src/              target/         dist/
 ```
 
 Dependencies:

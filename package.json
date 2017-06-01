@@ -7,13 +7,13 @@
     "cljs-once": "shadow-cljs --once",
     "cljs-release": "shadow-cljs --release",
     "cljs": "shadow-cljs --dev",
-    "html-dev": "env=dev node compiled/client.render.js",
-    "html": "node compiled/client.render.js",
+    "html-dev": "env=dev node target/client.render.js",
+    "html": "node target/client.render.js",
     "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
     "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
-    "del": "rm -r dist/*",
+    "del": "rm -rf dist/*",
     "build": "yarn del && yarn cljs-release && yarn webpack && yarn cljs-once && yarn html"
   },
   "repository": {
@@ -41,7 +41,7 @@
       "polyfill",
       "src"
     ],
-    "output-dir": "compiled",
+    "output-dir": "target/",
     "dependencies": [
       [
         "mvc-works/hsl",

@@ -9,9 +9,9 @@ ExtractTextPlugin = require 'extract-text-webpack-plugin'
 module.exports =
   entry:
     main: './entry/page'
-    vendor: ['./compiled/cljs.core',
-             './compiled/respo.core',
-             './compiled/respo_ui.style']
+    vendor: ['./target/cljs.core',
+             './target/respo.core',
+             './target/respo_ui.style']
   output:
     path: path.join __dirname, './dist/'
     filename: '[name].[chunkhash:8].js'

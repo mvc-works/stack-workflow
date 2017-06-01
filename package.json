@@ -38,7 +38,6 @@
   },
   "shadow-cljs": {
     "source-paths": [
-      "polyfill",
       "src"
     ],
     "output-dir": "target/",

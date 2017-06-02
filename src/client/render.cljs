@@ -9,8 +9,6 @@
   (writeFileSync file-name content)
   (println "Wrote to:" file-name))
 
-(defn attrs [tag attributes] (tag {:attrs attributes}))
-
 (def icon-url "http://logo.mvc-works.org/mvc.png")
 
 (defn html-dsl [config resources html-content]
@@ -19,19 +17,19 @@
     {}
     (head
      {}
-     (attrs title {:innerHTML "Stack Workflow"})
-     (attrs link {:rel "icon", :type "image/png", :href icon-url})
-     (attrs link {:rel "manifest", :href "manifest.json"})
-     (attrs meta' {:charset "utf8"})
-     (attrs meta' {:name "viewport", :content "width=device-width, initial-scale=1"})
-     (attrs meta' {:id "config", :type "text/edn", :content (pr-str config)})
+     (title {:innerHTML "Stack Workflow"})
+     (link {:rel "icon", :type "image/png", :href icon-url})
+     (link {:rel "manifest", :href "manifest.json"})
+     (meta' {:charset "utf8"})
+     (meta' {:name "viewport", :content "width=device-width, initial-scale=1"})
+     (meta' {:id "config", :type "text/edn", :content (pr-str config)})
      (if (contains? resources :css)
-       (attrs link {:rel "stylesheet", :type "text/css", :href (:css resources)})))
+       (link {:rel "stylesheet", :type "text/css", :href (:css resources)})))
     (body
      {}
-     (attrs div {:id "app", :innerHTML html-content})
-     (if (:build? config) (attrs script {:src (:vendor resources)}))
-     (attrs script {:src (:main resources)})))))
+     (div {:id "app", :innerHTML html-content})
+     (if (:build? config) (script {:src (:vendor resources)}))
+     (script {:src (:main resources)})))))
 
 (defn generate-empty-html [] (html-dsl {:build? false} {:main "/main.js"} ""))
 

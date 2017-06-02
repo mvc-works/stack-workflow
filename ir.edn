@@ -130,38 +130,30 @@
                                         ["{}"]
                                         ["head"
                                          ["{}"]
-                                         ["attrs" "title" ["{}" [":innerHTML" "|Stack Workflow"]]]
-                                         ["attrs"
-                                          "link"
-                                          ["{}" [":rel" "|icon"] [":type" "|image/png"] [":href" "icon-url"]]]
-                                         ["attrs" "link" ["{}" [":rel" "|manifest"] [":href" "|manifest.json"]]]
-                                         ["attrs" "meta'" ["{}" [":charset" "|utf8"]]]
-                                         ["attrs"
-                                          "meta'"
+                                         ["title" ["{}" [":innerHTML" "|Stack Workflow"]]]
+                                         ["link" ["{}" [":rel" "|icon"] [":type" "|image/png"] [":href" "icon-url"]]]
+                                         ["link" ["{}" [":rel" "|manifest"] [":href" "|manifest.json"]]]
+                                         ["meta'" ["{}" [":charset" "|utf8"]]]
+                                         ["meta'"
                                           ["{}"
                                            [":name" "|viewport"]
                                            [":content" "|width=device-width, initial-scale=1"]]]
-                                         ["attrs"
-                                          "meta'"
+                                         ["meta'"
                                           ["{}"
                                            [":id" "|config"]
                                            [":type" "|text/edn"]
                                            [":content" ["pr-str" "config"]]]]
                                          ["if"
                                           ["contains?" "resources" ":css"]
-                                          ["attrs"
-                                           "link"
+                                          ["link"
                                            ["{}"
                                             [":rel" "|stylesheet"]
                                             [":type" "|text/css"]
                                             [":href" [":css" "resources"]]]]]]
                                         ["body"
                                          ["{}"]
-                                         ["attrs" "div" ["{}" [":id" "|app"] [":innerHTML" "html-content"]]]
-                                         ["if"
-                                          [":build?" "config"]
-                                          ["attrs" "script" ["{}" [":src" [":vendor" "resources"]]]]]
-                                         ["attrs" "script" ["{}" [":src" [":main" "resources"]]]]]]]],
-                          "attrs" ["defn" "attrs" ["tag" "attributes"] ["tag" ["{}" [":attrs" "attributes"]]]],
+                                         ["div" ["{}" [":id" "|app"] [":innerHTML" "html-content"]]]
+                                         ["if" [":build?" "config"] ["script" ["{}" [":src" [":vendor" "resources"]]]]]
+                                         ["script" ["{}" [":src" [":main" "resources"]]]]]]]],
                           "icon-url" ["def" "icon-url" "|http://logo.mvc-works.org/mvc.png"]},
                    :procs [["main!"]]}}}

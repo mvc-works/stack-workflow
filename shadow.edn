@@ -3,4 +3,4 @@
  :output-dir "target/"
  :dependencies [["mvc-works/hsl" "0.1.2"]
                 ["respo/ui" "0.1.9"]
-                ["respo" "0.4.2"]]}
+                ["respo" "0.4.3"]]}

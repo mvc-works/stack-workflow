@@ -5,7 +5,7 @@
                   [org.clojure/clojurescript "1.9.562"     :scope "provided"]
                   [mvc-works/hsl             "0.1.2"]
                   [respo/ui                  "0.1.9"]
-                  [respo                     "0.4.2"]])
+                  [respo                     "0.4.3"]])
 
 (def +version+ "0.1.0")
 

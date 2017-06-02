@@ -2489,9 +2489,9 @@ shadow-cljs-jar@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/shadow-cljs-jar/-/shadow-cljs-jar-0.4.0.tgz#88cd4d0af7199abfd85add1f06eba679512d6a17"
 
-shadow-cljs@^0.7.0:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/shadow-cljs/-/shadow-cljs-0.7.1.tgz#bdb4adb9ea1a72728b3095d3e86949da6d2caa56"
+shadow-cljs@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/shadow-cljs/-/shadow-cljs-0.8.0.tgz#cf82464a9605ff78b8200bd53f47d5cefac46c4c"
   dependencies:
     bencode "^0.12.0"
     shadow-cljs-jar "^0.4.0"

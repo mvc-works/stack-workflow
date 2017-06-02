@@ -9,7 +9,7 @@
     "cljs": "shadow-cljs --dev",
     "html-dev": "env=dev node target/client.render.js",
     "html": "node target/client.render.js",
-    "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
+    "hmr": "webpack-dev-server --config webpack.dev.js --hot-only",
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
     "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
@@ -23,7 +23,6 @@
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
-    "coffee-script": "^1.12.6",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.11.0",

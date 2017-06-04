@@ -1,3 +1,8 @@
-[{:id :app
-  :target :npm-module
-  :release {:entries [client.main]}}]
+
+{:source-paths ["src"]
+ :dependencies [[mvc-works/hsl "0.1.2"]
+                [respo/ui "0.1.9"]
+                [respo "0.4.3"]]
+ :builds {:app {:output-dir "target/"
+                :target :npm-module
+                :release {:entries [client.main]}}}}

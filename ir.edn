@@ -103,10 +103,7 @@
                           "generate-empty-html" ["defn"
                                                  "generate-empty-html"
                                                  []
-                                                 ["html-dsl"
-                                                  ["{}" [":build?" "false"]]
-                                                  ["{}" [":main" "|/main.js"]]
-                                                  "|"]],
+                                                 ["html-dsl" ["{}" [":build?" "false"] [":main" "|/main.js"]] "|"]],
                           "generate-html" ["defn"
                                            "generate-html"
                                            []
@@ -117,14 +114,15 @@
                                               ["let"
                                                [["manifest" ["js/JSON.parse" ["slurp" "|dist/manifest.json"]]]]
                                                ["{}"
+                                                [":build?" "true"]
                                                 [":css" ["aget" "manifest" "|main.css"]]
                                                 [":main" ["aget" "manifest" "|main.js"]]
                                                 [":vendor" ["aget" "manifest" "|vendor.js"]]]]]]
-                                            ["html-dsl" ["{}" [":build?" "false"]] "resources" "html-content"]]],
+                                            ["html-dsl" "resources" "html-content"]]],
                           "slurp" ["defn" "slurp" ["x"] ["readFileSync" "x" "|utf8"]],
                           "html-dsl" ["defn"
                                       "html-dsl"
-                                      ["config" "resources" "html-content"]
+                                      ["resources" "html-content"]
                                       ["make-html"
                                        ["html"
                                         ["{}"]
@@ -142,7 +140,7 @@
                                           ["{}"
                                            [":id" "|config"]
                                            [":type" "|text/edn"]
-                                           [":content" ["pr-str" "config"]]]]
+                                           [":content" ["pr-str" ["{}" [":build?" [":build?" "resources"]]]]]]]
                                          ["if"
                                           ["contains?" "resources" ":css"]
                                           ["link"
@@ -153,7 +151,9 @@
                                         ["body"
                                          ["{}"]
                                          ["div" ["{}" [":id" "|app"] [":innerHTML" "html-content"]]]
-                                         ["if" [":build?" "config"] ["script" ["{}" [":src" [":vendor" "resources"]]]]]
+                                         ["if"
+                                          [":build?" "resources"]
+                                          ["script" ["{}" [":src" [":vendor" "resources"]]]]]
                                          ["script" ["{}" [":src" [":main" "resources"]]]]]]]],
                           "icon-url" ["def" "icon-url" "|http://logo.mvc-works.org/mvc.png"]},
                    :procs [["main!"]]}}}

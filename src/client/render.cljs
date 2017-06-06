@@ -11,7 +11,7 @@
 
 (def icon-url "http://logo.mvc-works.org/mvc.png")
 
-(defn html-dsl [config resources html-content]
+(defn html-dsl [resources html-content]
   (make-html
    (html
     {}
@@ -22,16 +22,17 @@
      (link {:rel "manifest", :href "manifest.json"})
      (meta' {:charset "utf8"})
      (meta' {:name "viewport", :content "width=device-width, initial-scale=1"})
-     (meta' {:id "config", :type "text/edn", :content (pr-str config)})
+     (meta'
+      {:id "config", :type "text/edn", :content (pr-str {:build? (:build? resources)})})
      (if (contains? resources :css)
        (link {:rel "stylesheet", :type "text/css", :href (:css resources)})))
     (body
      {}
      (div {:id "app", :innerHTML html-content})
-     (if (:build? config) (script {:src (:vendor resources)}))
+     (if (:build? resources) (script {:src (:vendor resources)}))
      (script {:src (:main resources)})))))
 
-(defn generate-empty-html [] (html-dsl {:build? false} {:main "/main.js"} ""))
+(defn generate-empty-html [] (html-dsl {:build? false, :main "/main.js"} ""))
 
 (defn slurp [x] (readFileSync x "utf8"))
 
@@ -39,10 +40,11 @@
   (let [tree (comp-container {} #{:shell})
         html-content (make-string tree)
         resources (let [manifest (js/JSON.parse (slurp "dist/manifest.json"))]
-                    {:css (aget manifest "main.css"),
+                    {:build? true,
+                     :css (aget manifest "main.css"),
                      :main (aget manifest "main.js"),
                      :vendor (aget manifest "vendor.js")})]
-    (html-dsl {:build? false} resources html-content)))
+    (html-dsl resources html-content)))
 
 (defn main! []
   (spit

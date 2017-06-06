@@ -17,6 +17,7 @@ module.exports = {
     path: path.join(__dirname, './dist/'),
     filename: '[name].[chunkhash:8].js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -33,6 +34,11 @@ module.exports = {
           limit: 100,
           name: 'fonts/[hash:8].[ext]'
         }
+      },
+      {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        options: { enforce: 'pre' }
       }
     ]
   },
@@ -42,7 +48,7 @@ module.exports = {
       name: 'vendor',
       filename: 'vendor.[chunkhash:8].js'
     }),
-    new UglifyJSPlugin(),
+    new UglifyJSPlugin({ sourceMap: true }),
     new ManifestPlugin()
   ]
 };

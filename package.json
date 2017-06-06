@@ -4,8 +4,8 @@
   "description": "Stack Workflow",
   "main": "index.js",
   "scripts": {
-    "cljs-once": "shadow-cljs --once",
-    "cljs-release": "shadow-cljs --release",
+    "cljs-once": "shadow-cljs -b app --once",
+    "cljs-release": "shadow-cljs -b app --release",
     "cljs": "shadow-cljs -b app --dev",
     "html-dev": "env=dev node target/client.render.js",
     "html": "node target/client.render.js",
@@ -14,7 +14,8 @@
     "webpack": "webpack --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
     "del": "rm -rf dist/*",
-    "build": "yarn del && yarn cljs-release && yarn webpack && yarn cljs-once && yarn html"
+    "serve": "http-server dist",
+    "build": "yarn del && yarn cljs-release && yarn webpack && yarn cljs-once && yarn html && yarn serve"
   },
   "repository": {
     "type": "git",
@@ -26,8 +27,10 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.11.0",
+    "http-server": "^0.10.0",
     "respo-ui": "^0.1.2",
     "shadow-cljs": "^0.9.4",
+    "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.1",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.7",

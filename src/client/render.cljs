@@ -22,8 +22,7 @@
      (link {:rel "manifest", :href "manifest.json"})
      (meta' {:charset "utf8"})
      (meta' {:name "viewport", :content "width=device-width, initial-scale=1"})
-     (meta'
-      {:id "config", :type "text/edn", :content (pr-str {:build? (:build? resources)})})
+     (if (:build? resources) (meta' {:id "server-rendered", :type "text/edn"}))
      (if (contains? resources :css)
        (link {:rel "stylesheet", :type "text/css", :href (:css resources)})))
     (body
@@ -37,7 +36,7 @@
 (defn slurp [x] (readFileSync x "utf8"))
 
 (defn generate-html []
-  (let [tree (comp-container {} #{:shell})
+  (let [tree (comp-container {})
         html-content (make-string tree)
         resources (let [manifest (js/JSON.parse (slurp "dist/manifest.json"))]
                     {:build? true,

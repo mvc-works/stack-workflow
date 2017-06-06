@@ -40,12 +40,12 @@
                                   []
                                   ["enable-console-print!"]
                                   ["if"
-                                   [":build?" "app-config"]
+                                   "server-rendered?"
                                    ["let"
                                     [["target" [".querySelector" "js/document" "|#app"]]]
                                     ["falsify-stage!"
                                      "target"
-                                     ["render-element" ["comp-container" "@ref-store" "app-config"]]
+                                     ["render-element" ["comp-container" "@ref-store"]]
                                      "dispatch!"]]]
                                   ["render-app!"]
                                   ["add-watch" "ref-store" ":changes" "render-app!"]
@@ -63,12 +63,9 @@
                                         [["target" [".querySelector" "js/document" "|#app"]]]
                                         ["render!" ["comp-container" "@ref-store"] "target" "dispatch!"]]],
                         "ref-store" ["defonce" "ref-store" ["atom" ["{}" [":states" ["{}"]]]]],
-                        "app-config" ["def"
-                                      "app-config"
-                                      ["let"
-                                       [["config-element" [".querySelector" "js/document" "|#config"]]
-                                        ["config-markup" [".getAttribute" "config-element" "|content"]]]
-                                       ["read-string" "config-markup"]]]},
+                        "server-rendered?" ["def"
+                                            "server-rendered?"
+                                            ["some?" ["js/document.querySelector" "|meta#server-rendered"]]]},
                  :procs [["set!" [".-onload" "js/window"] "-main!"]]},
          "updater.core" {:ns ["ns" "client.updater.core" [":require" ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]]],
                          :defs {"updater" ["defn"
@@ -108,7 +105,7 @@
                                            "generate-html"
                                            []
                                            ["let"
-                                            [["tree" ["comp-container" ["{}"] ["#{}" ":shell"]]]
+                                            [["tree" ["comp-container" ["{}"]]]
                                              ["html-content" ["make-string" "tree"]]
                                              ["resources"
                                               ["let"
@@ -136,11 +133,9 @@
                                           ["{}"
                                            [":name" "|viewport"]
                                            [":content" "|width=device-width, initial-scale=1"]]]
-                                         ["meta'"
-                                          ["{}"
-                                           [":id" "|config"]
-                                           [":type" "|text/edn"]
-                                           [":content" ["pr-str" ["{}" [":build?" [":build?" "resources"]]]]]]]
+                                         ["if"
+                                          [":build?" "resources"]
+                                          ["meta'" ["{}" [":id" "|server-rendered"] [":type" "|text/edn"]]]]
                                          ["if"
                                           ["contains?" "resources" ":css"]
                                           ["link"

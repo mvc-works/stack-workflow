@@ -14,19 +14,13 @@
   (let [target (.querySelector js/document "#app")]
     (render! (comp-container @ref-store) target dispatch!)))
 
-(def app-config
-  (let [config-element (.querySelector js/document "#config")
-        config-markup (.getAttribute config-element "content")]
-    (read-string config-markup)))
+(def server-rendered? (some? (js/document.querySelector "meta#server-rendered")))
 
 (defn -main! []
   (enable-console-print!)
-  (if (:build? app-config)
+  (if server-rendered?
     (let [target (.querySelector js/document "#app")]
-      (falsify-stage!
-       target
-       (render-element (comp-container @ref-store app-config))
-       dispatch!)))
+      (falsify-stage! target (render-element (comp-container @ref-store)) dispatch!)))
   (render-app!)
   (add-watch ref-store :changes render-app!)
   (println "App started."))

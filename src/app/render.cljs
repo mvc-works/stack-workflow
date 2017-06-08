@@ -1,8 +1,8 @@
 
-(ns client.render
+(ns app.render
   (:require [respo.alias :refer [html head title script style meta' div link body]]
             [respo.render.html :refer [make-html make-string]]
-            [client.comp.container :refer [comp-container]]
+            [app.comp.container :refer [comp-container]]
             ["fs" :refer [readFileSync writeFileSync]]))
 
 (defn spit [file-name content]

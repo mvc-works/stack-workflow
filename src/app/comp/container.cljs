@@ -1,5 +1,5 @@
 
-(ns client.comp.container
+(ns app.comp.container
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo.alias :refer [create-comp div span]]

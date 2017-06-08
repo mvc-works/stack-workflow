@@ -1,6 +1,6 @@
-{:package "client",
+{:package "app",
  :files {"comp.container" {:ns ["ns"
-                                "client.comp.container"
+                                "app.comp.container"
                                 [":require"
                                  ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                                  ["[]" "respo-ui.style" ":as" "ui"]
@@ -23,12 +23,12 @@
                                                          ["comp-text" "|Demo" "nil"]]]]]]]},
                            :procs []},
          "main" {:ns ["ns"
-                      "client.main"
+                      "app.main"
                       [":require"
                        ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
-                       ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
+                       ["[]" "app.comp.container" ":refer" ["[]" "comp-container"]]
                        ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]
-                       ["[]" "client.updater.core" ":refer" ["[]" "updater"]]]],
+                       ["[]" "app.updater.core" ":refer" ["[]" "updater"]]]],
                  :defs {"dispatch!" ["defn"
                                      "dispatch!"
                                      ["op" "op-data"]
@@ -67,7 +67,7 @@
                                             "server-rendered?"
                                             ["some?" ["js/document.querySelector" "|meta#server-rendered"]]]},
                  :procs [["set!" [".-onload" "js/window"] "-main!"]]},
-         "updater.core" {:ns ["ns" "client.updater.core" [":require" ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]]],
+         "updater.core" {:ns ["ns" "app.updater.core" [":require" ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]]],
                          :defs {"updater" ["defn"
                                            "updater"
                                            ["store" "op" "op-data"]
@@ -77,14 +77,14 @@
                                             "store"]]},
                          :procs []},
          "render" {:ns ["ns"
-                        "client.render"
+                        "app.render"
                         [":require"
                          ["[]"
                           "respo.alias"
                           ":refer"
                           ["[]" "html" "head" "title" "script" "style" "meta'" "div" "link" "body"]]
                          ["[]" "respo.render.html" ":refer" ["[]" "make-html" "make-string"]]
-                         ["[]" "client.comp.container" ":refer" ["[]" "comp-container"]]
+                         ["[]" "app.comp.container" ":refer" ["[]" "comp-container"]]
                          ["[]" "|fs" ":refer" ["[]" "readFileSync" "writeFileSync"]]]],
                    :defs {"main!" ["defn"
                                    "main!"

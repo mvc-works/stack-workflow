@@ -1,9 +1,9 @@
 
-(ns client.main
+(ns app.main
   (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
-            [client.comp.container :refer [comp-container]]
+            [app.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
-            [client.updater.core :refer [updater]]))
+            [app.updater.core :refer [updater]]))
 
 (defonce ref-store (atom {:states {}}))
 

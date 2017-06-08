@@ -10,21 +10,20 @@
 (defn dispatch! [op op-data]
   (let [next-store (updater @ref-store op op-data)] (reset! ref-store next-store)))
 
-(defn render-app! []
-  (let [target (.querySelector js/document "#app")]
-    (render! (comp-container @ref-store) target dispatch!)))
+(def mount-target (.querySelector js/document "#app"))
+
+(defn render-app! [] (render! (comp-container @ref-store) mount-target dispatch!))
+
+(defn reload! [] (clear-cache!) (render-app!) (println "Code updated."))
 
 (def server-rendered? (some? (js/document.querySelector "meta#server-rendered")))
 
-(defn -main! []
+(defn main! []
   (enable-console-print!)
   (if server-rendered?
-    (let [target (.querySelector js/document "#app")]
-      (falsify-stage! target (render-element (comp-container @ref-store)) dispatch!)))
+    (falsify-stage! mount-target (render-element (comp-container @ref-store)) dispatch!))
   (render-app!)
   (add-watch ref-store :changes render-app!)
   (println "App started."))
 
-(defn on-jsload! [] (clear-cache!) (render-app!) (println "Code updated."))
-
-(set! (.-onload js/window) -main!)
+(set! (.-onload js/window) main!)

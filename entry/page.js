@@ -6,6 +6,6 @@ var main = require('../target/app.main.js');
 if (module.hot) {
   module.hot.accept('../target/app.main.js', function() {
     main = require('../target/app.main.js');
-    main.on_jsload_BANG_();
+    main.reload_BANG_();
   });
 }

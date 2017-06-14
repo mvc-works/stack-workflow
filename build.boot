@@ -1,11 +1,7 @@
 
 (set-env!
   :resource-paths #{"src"}
-  :dependencies '[[org.clojure/clojure       "1.8.0"       :scope "provided"]
-                  [org.clojure/clojurescript "1.9.562"     :scope "provided"]
-                  [mvc-works/hsl             "0.1.2"]
-                  [respo/ui                  "0.1.9"]
-                  [respo                     "0.4.3"]])
+  :dependencies '[])
 
 (def +version+ "0.1.0")
 

@@ -5,4 +5,5 @@
                 [respo "0.4.5"]]
  :builds {:app {:output-dir "target/"
                 :target :npm-module
-                :release {:entries [app.main]}}}}
+                :release {:entries [app.main]
+                          :output-dir "target/release/"}}}}

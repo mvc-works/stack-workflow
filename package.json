@@ -11,7 +11,7 @@
     "html": "node target/app.render.js",
     "hmr": "webpack-dev-server --config webpack.dev.coffee --hot-only",
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
-    "webpack": "webpack --hide-modules --progress",
+    "webpack": "webpack --config webpack.release.coffee --hide-modules --progress",
     "dev": "yarn html-dev && yarn hmr",
     "del": "rm -rf dist/*",
     "serve": "http-server dist",

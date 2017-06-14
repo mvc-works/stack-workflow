@@ -7,7 +7,7 @@ ExtractTextPlugin = require 'extract-text-webpack-plugin'
 
 module.exports =
   entry:
-    main: './entry/page'
+    main: './entry/release'
     vendor: [
       './target/cljs.core'
       './target/respo.core'

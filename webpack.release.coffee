@@ -9,9 +9,9 @@ module.exports =
   entry:
     main: './entry/release'
     vendor: [
-      './target/cljs.core'
-      './target/respo.core'
-      './target/respo_ui.style'
+      './target/release/cljs.core'
+      './target/release/respo.core'
+      './target/release/respo_ui.style'
     ]
   output:
     path: path.join(__dirname, './dist/')

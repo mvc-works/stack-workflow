@@ -19,7 +19,6 @@
 (def server-rendered? (some? (js/document.querySelector "meta#server-rendered")))
 
 (defn main! []
-  (enable-console-print!)
   (if server-rendered?
     (falsify-stage! mount-target (render-element (comp-container @ref-store)) dispatch!))
   (render-app!)

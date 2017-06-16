@@ -26,9 +26,10 @@ To run in development:
 ```bash
 stack-editor
 # another tty
-yarn cljs
+yarn cljs-browser
 # another tty
 yarn dev
+# open localhost:8080
 ```
 
 To build:

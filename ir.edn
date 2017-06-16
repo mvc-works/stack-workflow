@@ -50,7 +50,7 @@
                                  ["render-app!"]
                                  ["add-watch" "ref-store" ":changes" "render-app!"]
                                  ["println" "|App started."]],
-                        "mount-target" ["def" "mount-target" [".querySelector" "js/document" "|#app"]]},
+                        "mount-target" ["def" "mount-target" [".querySelector" "js/document" "|.app"]]},
                  :procs [["set!" [".-onload" "js/window"] "main!"]]},
          "updater.core" {:ns ["ns" "app.updater.core" [":require" ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]]],
                          :defs {"updater" ["defn"
@@ -74,9 +74,10 @@
                    :defs {"main!" ["defn"
                                    "main!"
                                    []
-                                   ["spit"
-                                    "|dist/index.html"
-                                    ["if" ["=" "js/process.env.env" "|dev"] ["generate-empty-html"] ["generate-html"]]]],
+                                   ["if"
+                                    ["=" "js/process.env.env" "|dev"]
+                                    ["spit" "|target/index.html" ["generate-empty-html"]]
+                                    ["spit" "|dist/index.html" ["generate-html"]]]],
                           "spit" ["defn"
                                   "spit"
                                   ["file-name" "content"]
@@ -85,7 +86,12 @@
                           "generate-empty-html" ["defn"
                                                  "generate-empty-html"
                                                  []
-                                                 ["html-dsl" ["{}" [":build?" "false"] [":main" "|/main.js"]] "|"]],
+                                                 ["html-dsl"
+                                                  ["{}"
+                                                   [":build?" "false"]
+                                                   [":main" "|/main.js"]
+                                                   [":cljs-main" "|/browser/main.js"]]
+                                                  "|"]],
                           "generate-html" ["defn"
                                            "generate-html"
                                            []
@@ -130,10 +136,11 @@
                                             [":href" [":css" "resources"]]]]]]
                                         ["body"
                                          ["{}"]
-                                         ["div" ["{}" [":id" "|app"] [":innerHTML" "html-content"]]]
+                                         ["div" ["{}" [":class-name" "|app"] [":innerHTML" "html-content"]]]
                                          ["if"
                                           [":build?" "resources"]
-                                          ["script" ["{}" [":src" [":vendor" "resources"]]]]]
+                                          ["script" ["{}" [":src" [":vendor" "resources"]]]]
+                                          ["script" ["{}" [":src" [":cljs-main" "resources"]]]]]
                                          ["script" ["{}" [":src" [":main" "resources"]]]]]]]],
                           "icon-url" ["def" "icon-url" "|http://logo.mvc-works.org/mvc.png"]},
                    :procs [["main!"]]}}}

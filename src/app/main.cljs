@@ -10,7 +10,7 @@
 (defn dispatch! [op op-data]
   (let [next-store (updater @ref-store op op-data)] (reset! ref-store next-store)))
 
-(def mount-target (.querySelector js/document "#app"))
+(def mount-target (.querySelector js/document ".app"))
 
 (defn render-app! [] (render! (comp-container @ref-store) mount-target dispatch!))
 

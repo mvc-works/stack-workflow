@@ -27,11 +27,14 @@
        (link {:rel "stylesheet", :type "text/css", :href (:css resources)})))
     (body
      {}
-     (div {:id "app", :innerHTML html-content})
-     (if (:build? resources) (script {:src (:vendor resources)}))
+     (div {:class-name "app", :innerHTML html-content})
+     (if (:build? resources)
+       (script {:src (:vendor resources)})
+       (script {:src (:cljs-main resources)}))
      (script {:src (:main resources)})))))
 
-(defn generate-empty-html [] (html-dsl {:build? false, :main "/main.js"} ""))
+(defn generate-empty-html []
+  (html-dsl {:build? false, :main "/main.js", :cljs-main "/browser/main.js"} ""))
 
 (defn slurp [x] (readFileSync x "utf8"))
 
@@ -46,8 +49,8 @@
     (html-dsl resources html-content)))
 
 (defn main! []
-  (spit
-   "dist/index.html"
-   (if (= js/process.env.env "dev") (generate-empty-html) (generate-html))))
+  (if (= js/process.env.env "dev")
+    (spit "target/index.html" (generate-empty-html))
+    (spit "dist/index.html" (generate-html))))
 
 (main!)

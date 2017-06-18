@@ -27,14 +27,14 @@
                                      "dispatch!"
                                      ["op" "op-data"]
                                      ["let"
-                                      [["next-store" ["updater" "@ref-store" "op" "op-data"]]]
-                                      ["reset!" "ref-store" "next-store"]]],
+                                      [["next-store" ["updater" "@*store" "op" "op-data"]]]
+                                      ["reset!" "*store" "next-store"]]],
                         "on-jsload!" ["defn" "reload!" [] ["clear-cache!"] ["render-app!"] ["println" "|Code updated."]],
                         "render-app!" ["defn"
                                        "render-app!"
                                        []
-                                       ["render!" ["comp-container" "@ref-store"] "mount-target" "dispatch!"]],
-                        "ref-store" ["defonce" "ref-store" ["atom" ["{}" [":states" ["{}"]]]]],
+                                       ["render!" ["comp-container" "@*store"] "mount-target" "dispatch!"]],
+                        "*store" ["defonce" "*store" ["atom" ["{}" [":states" ["{}"]]]]],
                         "server-rendered?" ["def"
                                             "server-rendered?"
                                             ["some?" ["js/document.querySelector" "|meta#server-rendered"]]],
@@ -45,10 +45,10 @@
                                   "server-rendered?"
                                   ["falsify-stage!"
                                    "mount-target"
-                                   ["render-element" ["comp-container" "@ref-store"]]
+                                   ["render-element" ["comp-container" "@*store"]]
                                    "dispatch!"]]
                                  ["render-app!"]
-                                 ["add-watch" "ref-store" ":changes" "render-app!"]
+                                 ["add-watch" "*store" ":changes" "render-app!"]
                                  ["println" "|App started."]],
                         "mount-target" ["def" "mount-target" [".querySelector" "js/document" "|.app"]]},
                  :procs [["set!" [".-onload" "js/window"] "main!"]]},

@@ -1,9 +1,9 @@
 
 (ns app.main
-  (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
-            [app.comp.container :refer [comp-container]]
-            [cljs.reader :refer [read-string]]
-            [app.updater.core :refer [updater]]))
+  (:require (respo.core :refer (render! clear-cache! falsify-stage! render-element))
+            (app.comp.container :refer (comp-container))
+            (cljs.reader :refer (read-string))
+            (app.updater.core :refer (updater))))
 
 (defonce *store (atom {:states {}}))
 

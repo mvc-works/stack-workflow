@@ -1,9 +1,9 @@
 
 (ns app.render
-  (:require (respo.alias :refer (html head title script style meta' div link body))
-            (respo.render.html :refer (make-html make-string))
-            (app.comp.container :refer (comp-container))
-            ("fs" :refer (readFileSync writeFileSync))))
+  (:require [respo.alias :refer [html head title script style meta' div link body]]
+            [respo.render.html :refer [make-html make-string]]
+            [app.comp.container :refer [comp-container]]
+            ["fs" :refer [readFileSync writeFileSync]]))
 
 (defn spit [file-name content]
   (writeFileSync file-name content)

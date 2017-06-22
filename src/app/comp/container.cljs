@@ -1,16 +1,15 @@
 
 (ns app.comp.container
-  (:require-macros [respo.macros :refer [defcomp]])
+  (:require-macros [respo.macros :refer [defcomp <> div span]])
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
-            [respo.alias :refer [create-comp div span]]
-            [respo.comp.space :refer [comp-space]]
-            [respo.comp.text :refer [comp-text]]))
+            [respo.core :refer [create-comp]]
+            [respo.comp.space :refer [=<]]))
 
 (defcomp
  comp-container
  (store)
  (div
   {:style (merge ui/global)}
-  (comp-space "8px" nil)
-  (div {:style ui/button} (comp-text "Demo" nil))))
+  (=< "8px" nil)
+  (div {:style ui/button} (<> span "Demo" nil))))

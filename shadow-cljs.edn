@@ -2,7 +2,7 @@
 {:source-paths ["src"]
  :dependencies [[mvc-works/hsl "0.1.2"]
                 [respo/ui "0.1.9"]
-                [respo "0.4.5"]]
+                [respo "0.5.2"]]
  :builds {:dev {:output-dir "target/browser"
                 :asset-path "/browser"
                 :target :browser

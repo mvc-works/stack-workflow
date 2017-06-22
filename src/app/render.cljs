@@ -1,6 +1,7 @@
 
 (ns app.render
-  (:require [respo.alias :refer [html head title script style meta' div link body]]
+  (:require-macros (respo.macros :refer [html head title script style meta' div link body]))
+  (:require [respo.core :refer [create-element]]
             [respo.render.html :refer [make-html make-string]]
             [app.comp.container :refer [comp-container]]
             ["fs" :refer [readFileSync writeFileSync]]))

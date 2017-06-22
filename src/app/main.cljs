@@ -4,9 +4,10 @@
             [respo.cursor :refer [mutate]]
             [app.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
-            [app.updater.core :refer [updater]]))
+            [app.updater.core :refer [updater]]
+            [app.schema :as schema]))
 
-(defonce *store (atom {:states {}}))
+(defonce *store (atom schema/store))
 
 (defn dispatch! [op op-data]
   (let [next-store (if (= op :states)
@@ -20,7 +21,7 @@
 
 (defn reload! [] (clear-cache!) (render-app! render!) (println "Code updated."))
 
-(def server-rendered? (some? (js/document.querySelector "meta#server-rendered")))
+(def server-rendered? (some? (js/document.querySelector "meta.respo-ssr")))
 
 (defn main! []
   (if server-rendered? (render-app! falsify-stage!))

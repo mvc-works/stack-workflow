@@ -1,57 +1,30 @@
 
 (ns app.render
-  (:require-macros (respo.macros :refer [html head title script style meta' div link body]))
-  (:require [respo.core :refer [create-element]]
-            [respo.render.html :refer [make-html make-string]]
+  (:require [respo.render.html :refer [make-string]]
+            [shell-page.core :refer [make-page spit slurp]]
             [app.comp.container :refer [comp-container]]
-            ["fs" :refer [readFileSync writeFileSync]]))
+            [app.schema :as schema]))
 
-(defn spit [file-name content]
-  (writeFileSync file-name content)
-  (println "Wrote to:" file-name))
-
-(def icon-url "http://logo.mvc-works.org/mvc.png")
-
-(defn html-dsl [resources html-content]
-  (make-html
-   (html
-    {}
-    (head
-     {}
-     (title {:innerHTML "Stack Workflow"})
-     (link {:rel "icon", :type "image/png", :href icon-url})
-     (link {:rel "manifest", :href "manifest.json"})
-     (meta' {:charset "utf8"})
-     (meta' {:name "viewport", :content "width=device-width, initial-scale=1"})
-     (if (:build? resources) (meta' {:id "server-rendered", :type "text/edn"}))
-     (if (contains? resources :css)
-       (link {:rel "stylesheet", :type "text/css", :href (:css resources)})))
-    (body
-     {}
-     (div {:class-name "app", :innerHTML html-content})
-     (if (:build? resources)
-       (script {:src (:vendor resources)})
-       (script {:src (:cljs-main resources)}))
-     (script {:src (:main resources)})))))
+(def base-info
+  {:title "Stack Workflow",
+   :icon "http://logo.mvc-works.org/mvc.png",
+   :ssr nil,
+   :inner-html nil})
 
 (defn generate-empty-html []
-  (html-dsl {:build? false, :main "/main.js", :cljs-main "/browser/main.js"} ""))
-
-(defn slurp [x] (readFileSync x "utf8"))
+  (make-page "" (merge base-info {:styles [], :scripts ["/main.js" "/browser/main.js"]})))
 
 (defn generate-html []
-  (let [tree (comp-container {})
+  (let [tree (comp-container schema/store)
         html-content (make-string tree)
-        resources (let [manifest (js/JSON.parse (slurp "dist/manifest.json"))]
-                    {:build? true,
-                     :css (aget manifest "main.css"),
-                     :main (aget manifest "main.js"),
-                     :vendor (aget manifest "vendor.js")})]
-    (html-dsl resources html-content)))
+        manifest (.parse js/JSON (slurp "dist/manifest.json"))
+        resources (merge
+                   base-info
+                   {:styles [(aget manifest "main.css")],
+                    :scripts [(aget manifest "vendor.js") (aget manifest "main.js")]})]
+    (make-page html-content resources)))
 
 (defn main! []
   (if (= js/process.env.env "dev")
     (spit "target/index.html" (generate-empty-html))
     (spit "dist/index.html" (generate-html))))
-
-(main!)

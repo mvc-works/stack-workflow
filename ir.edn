@@ -54,13 +54,13 @@
                                        ["renderer"]
                                        ["renderer" "mount-target" ["comp-container" "@*store"] "dispatch!"]],
                         "*store" ["defonce" "*store" ["atom" "schema/store"]],
-                        "server-rendered?" ["def"
-                                            "server-rendered?"
+                        "ssr?" ["def"
+                                            "ssr?"
                                             ["some?" ["js/document.querySelector" "|meta.respo-ssr"]]],
                         "main!" ["defn"
                                  "main!"
                                  []
-                                 ["if" "server-rendered?" ["render-app!" "realize-ssr!"]]
+                                 ["if" "ssr?" ["render-app!" "realize-ssr!"]]
                                  ["render-app!" "render!"]
                                  ["add-watch" "*store" ":changes" ["fn" [] ["render-app!" "render!"]]]
                                  ["println" "|App started."]],

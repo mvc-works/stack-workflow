@@ -21,10 +21,10 @@
 
 (defn reload! [] (clear-cache!) (render-app! render!) (println "Code updated."))
 
-(def server-rendered? (some? (js/document.querySelector "meta.respo-ssr")))
+(def ssr? (some? (js/document.querySelector "meta.respo-ssr")))
 
 (defn main! []
-  (if server-rendered? (render-app! realize-ssr!))
+  (if ssr? (render-app! realize-ssr!))
   (render-app! render!)
   (add-watch *store :changes (fn [] (render-app! render!)))
   (println "App started."))

@@ -4,13 +4,11 @@
                 [mvc-works/shell-page "0.1.1"]
                 [respo/ui "0.1.9"]
                 [respo "0.5.2"]]
- :builds {:browser {:output-dir "target/browser"
+ :builds {:browser {:target :browser
+                    :output-dir "target/browser"
                     :asset-path "/browser"
-                    :target :browser
                     :modules {:main {:entries [app.main]}}
                     :devtools {:after-load app.main/reload!}}
-          :npm {:output-dir "target"
-                :target :npm-module}
           :ssr {:target :node-script
                 :output-to "target/ssr.js"
                 :main app.render/main!

@@ -7,7 +7,6 @@
     "tiye": "rsync -r dist/ repo.tiye.me:repo/mvc-works/stack-workflow/",
     "release-cljs": "shadow-cljs release release",
     "watch": "shadow-cljs watch browser",
-    "compile": "shadow-cljs compile npm",
     "compile-ssr": "shadow-cljs compile ssr",
     "html-dev": "env=dev node target/ssr.js",
     "html": "node target/ssr.js",

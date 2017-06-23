@@ -2,7 +2,8 @@
  :root {:ns "main", :def "main!"},
  :files {"comp.container" {:ns ["ns"
                                 "app.comp.container"
-                                [":require-macros" ["[]" "respo.macros" ":refer" ["[]" "defcomp" "<>" "div" "span"]]]
+                                [":require-macros"
+                                 ["[]" "respo.macros" ":refer" ["[]" "defcomp" "<>" "div" "button" "span"]]]
                                 [":require"
                                  ["[]" "hsl.core" ":refer" ["[]" "hsl"]]
                                  ["[]" "respo-ui.style" ":as" "ui"]
@@ -12,14 +13,21 @@
                                                     "comp-container"
                                                     ["store"]
                                                     ["div"
-                                                     ["{}" [":style" ["merge" "ui/global"]]]
+                                                     ["{}" [":style" ["merge" "ui/global" "ui/row"]]]
                                                      ["=<" "|8px" "nil"]
-                                                     ["div" ["{}" [":style" "ui/button"]] ["<>" "span" "|Demo" "nil"]]]]},
+                                                     ["div"
+                                                      ["{}"]
+                                                      ["button"
+                                                       ["{}"
+                                                        [":style" "ui/button"]
+                                                        [":inner-text" ["str" "|inc " [":data" "store"]]]
+                                                        [":event" ["{}" [":click" "on-click"]]]]]]]],
+                                  "on-click" ["defn" "on-click" ["e" "dispatch!"] ["dispatch!" ":inc" "nil"]]},
                            :procs []},
          "main" {:ns ["ns"
                       "app.main"
                       [":require"
-                       ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "falsify-stage!" "render-element"]]
+                       ["[]" "respo.core" ":refer" ["[]" "render!" "clear-cache!" "realize-ssr!"]]
                        ["[]" "respo.cursor" ":refer" ["[]" "mutate"]]
                        ["[]" "app.comp.container" ":refer" ["[]" "comp-container"]]
                        ["[]" "cljs.reader" ":refer" ["[]" "read-string"]]
@@ -52,14 +60,17 @@
                         "main!" ["defn"
                                  "main!"
                                  []
-                                 ["if" "server-rendered?" ["render-app!" "falsify-stage!"]]
+                                 ["if" "server-rendered?" ["render-app!" "realize-ssr!"]]
                                  ["render-app!" "render!"]
-                                 ["add-watch" "*store" ":changes" "render-app!"]
+                                 ["add-watch" "*store" ":changes" ["fn" [] ["render-app!" "render!"]]]
                                  ["println" "|App started."]],
                         "mount-target" ["def" "mount-target" [".querySelector" "js/document" "|.app"]]},
                  :procs [["set!" [".-onload" "js/window"] "main!"]]},
          "updater.core" {:ns ["ns" "app.updater.core"],
-                         :defs {"updater" ["defn" "updater" ["store" "op" "op-data"] ["case" "op" "store"]]},
+                         :defs {"updater" ["defn"
+                                           "updater"
+                                           ["store" "op" "op-data"]
+                                           ["case" "op" [":inc" ["update" "store" ":data" "inc"]] "store"]]},
                          :procs []},
          "render" {:ns ["ns"
                         "app.render"
@@ -105,4 +116,6 @@
                                            [":scripts"
                                             ["[]" ["aget" "manifest" "|vendor.js"] ["aget" "manifest" "|main.js"]]]]]]]]},
                    :procs []},
-         "schema" {:ns ["ns" "app.schema"], :defs {"store" ["def" "store" ["{}" ":states"]]}, :procs []}}}
+         "schema" {:ns ["ns" "app.schema"],
+                   :defs {"store" ["def" "store" ["{}" [":states" ["{}"]] [":data" "0"]]]},
+                   :procs []}}}

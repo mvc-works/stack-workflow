@@ -1,6 +1,6 @@
 
 (ns app.main
-  (:require [respo.core :refer [render! clear-cache! falsify-stage! render-element]]
+  (:require [respo.core :refer [render! clear-cache! realize-ssr!]]
             [respo.cursor :refer [mutate]]
             [app.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
@@ -24,9 +24,9 @@
 (def server-rendered? (some? (js/document.querySelector "meta.respo-ssr")))
 
 (defn main! []
-  (if server-rendered? (render-app! falsify-stage!))
+  (if server-rendered? (render-app! realize-ssr!))
   (render-app! render!)
-  (add-watch *store :changes render-app!)
+  (add-watch *store :changes (fn [] (render-app! render!)))
   (println "App started."))
 
 (set! (.-onload js/window) main!)

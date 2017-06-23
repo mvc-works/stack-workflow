@@ -11,20 +11,20 @@
    :ssr nil,
    :inner-html nil})
 
-(defn generate-empty-html []
+(defn dev-page []
   (make-page "" (merge base-info {:styles [], :scripts ["/main.js" "/browser/main.js"]})))
 
-(defn generate-html []
-  (let [tree (comp-container schema/store)
-        html-content (make-string tree)
-        manifest (.parse js/JSON (slurp "dist/manifest.json"))
-        resources (merge
-                   base-info
-                   {:styles [(aget manifest "main.css")],
-                    :scripts [(aget manifest "vendor.js") (aget manifest "main.js")]})]
-    (make-page html-content resources)))
+(defn prod-page []
+  (let [html-content (make-string (comp-container schema/store))
+        manifest (.parse js/JSON (slurp "dist/manifest.json"))]
+    (make-page
+     html-content
+     (merge
+      base-info
+      {:styles [(aget manifest "main.css")],
+       :scripts [(aget manifest "vendor.js") (aget manifest "main.js")]}))))
 
 (defn main! []
   (if (= js/process.env.env "dev")
-    (spit "target/index.html" (generate-empty-html))
-    (spit "dist/index.html" (generate-html))))
+    (spit "target/index.html" (dev-page))
+    (spit "dist/index.html" (prod-page))))

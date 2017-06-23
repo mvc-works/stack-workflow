@@ -73,39 +73,36 @@
                                    []
                                    ["if"
                                     ["=" "js/process.env.env" "|dev"]
-                                    ["spit" "|target/index.html" ["generate-empty-html"]]
-                                    ["spit" "|dist/index.html" ["generate-html"]]]],
-                          "generate-empty-html" ["defn"
-                                                 "generate-empty-html"
-                                                 []
-                                                 ["make-page"
-                                                  "|"
-                                                  ["merge"
-                                                   "base-info"
-                                                   ["{}"
-                                                    [":styles" ["[]"]]
-                                                    [":scripts" ["[]" "|/main.js" "|/browser/main.js"]]]]]],
-                          "generate-html" ["defn"
-                                           "generate-html"
-                                           []
-                                           ["let"
-                                            [["tree" ["comp-container" "schema/store"]]
-                                             ["html-content" ["make-string" "tree"]]
-                                             ["manifest" [".parse" "js/JSON" ["slurp" "|dist/manifest.json"]]]
-                                             ["resources"
-                                              ["merge"
-                                               "base-info"
-                                               ["{}"
-                                                [":styles" ["[]" ["aget" "manifest" "|main.css"]]]
-                                                [":scripts"
-                                                 ["[]" ["aget" "manifest" "|vendor.js"] ["aget" "manifest" "|main.js"]]]]]]]
-                                            ["make-page" "html-content" "resources"]]],
+                                    ["spit" "|target/index.html" ["dev-page"]]
+                                    ["spit" "|dist/index.html" ["prod-page"]]]],
                           "base-info" ["def"
                                        "base-info"
                                        ["{}"
                                         [":title" "|Stack Workflow"]
                                         [":icon" "|http://logo.mvc-works.org/mvc.png"]
                                         [":ssr" "nil"]
-                                        [":inner-html" "nil"]]]},
+                                        [":inner-html" "nil"]]],
+                          "dev-page" ["defn"
+                                      "dev-page"
+                                      []
+                                      ["make-page"
+                                       "|"
+                                       ["merge"
+                                        "base-info"
+                                        ["{}" [":styles" ["[]"]] [":scripts" ["[]" "|/main.js" "|/browser/main.js"]]]]]],
+                          "prod-page" ["defn"
+                                       "prod-page"
+                                       []
+                                       ["let"
+                                        [["html-content" ["make-string" ["comp-container" "schema/store"]]]
+                                         ["manifest" [".parse" "js/JSON" ["slurp" "|dist/manifest.json"]]]]
+                                        ["make-page"
+                                         "html-content"
+                                         ["merge"
+                                          "base-info"
+                                          ["{}"
+                                           [":styles" ["[]" ["aget" "manifest" "|main.css"]]]
+                                           [":scripts"
+                                            ["[]" ["aget" "manifest" "|vendor.js"] ["aget" "manifest" "|main.js"]]]]]]]]},
                    :procs []},
          "schema" {:ns ["ns" "app.schema"], :defs {"store" ["def" "store" ["{}" ":states"]]}, :procs []}}}

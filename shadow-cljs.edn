@@ -1,14 +1,15 @@
 
 {:source-paths ["src"]
  :dependencies [[mvc-works/hsl          "0.1.2"]
-                [mvc-works/shell-page   "0.1.1"]
+                [mvc-works/shell-page   "0.1.2"]
                 [respo/ui               "0.1.9"]
-                [respo                  "0.5.4"]]
+                [respo                  "0.5.10"]]
  :builds {:browser {:target :browser
                     :output-dir "target/browser"
                     :asset-path "/browser"
                     :modules {:main {:entries [app.main]}}
-                    :devtools {:after-load app.main/reload!}}
+                    :devtools {:after-load app.main/reload!
+                               :preloads [shadow.cljs.devtools.client.hud]}}
           :ssr {:target :node-script
                 :output-to "target/ssr.js"
                 :main app.render/main!

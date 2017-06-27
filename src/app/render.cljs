@@ -12,7 +12,11 @@
    :inner-html nil})
 
 (defn dev-page []
-  (make-page "" (merge base-info {:styles [], :scripts ["/main.js" "/browser/main.js"]})))
+  (make-page
+   ""
+   (merge
+    base-info
+    {:styles [], :scripts ["/main.js" "/browser/lib.js" "/browser/main.js"]})))
 
 (defn prod-page []
   (let [html-content (make-string (comp-container schema/store))

@@ -98,7 +98,9 @@
                                        "|"
                                        ["merge"
                                         "base-info"
-                                        ["{}" [":styles" ["[]"]] [":scripts" ["[]" "|/main.js" "|/browser/main.js"]]]]]],
+                                        ["{}"
+                                         [":styles" ["[]"]]
+                                         [":scripts" ["[]" "|/main.js" "|/browser/lib.js" "|/browser/main.js"]]]]]],
                           "prod-page" ["defn"
                                        "prod-page"
                                        []

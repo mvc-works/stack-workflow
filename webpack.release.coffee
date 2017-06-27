@@ -8,9 +8,6 @@ ExtractTextPlugin = require 'extract-text-webpack-plugin'
 module.exports =
   entry:
     main: './entry/release'
-    vendor: [
-      'respo-ui'
-    ]
   output:
     path: path.join(__dirname, './dist/')
     filename: '[name].[chunkhash:8].js'

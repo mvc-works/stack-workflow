@@ -54,9 +54,7 @@
                                        ["renderer"]
                                        ["renderer" "mount-target" ["comp-container" "@*store"] "dispatch!"]],
                         "*store" ["defonce" "*store" ["atom" "schema/store"]],
-                        "ssr?" ["def"
-                                            "ssr?"
-                                            ["some?" ["js/document.querySelector" "|meta.respo-ssr"]]],
+                        "ssr?" ["def" "ssr?" ["some?" ["js/document.querySelector" "|meta.respo-ssr"]]],
                         "main!" ["defn"
                                  "main!"
                                  []
@@ -106,7 +104,8 @@
                                        []
                                        ["let"
                                         [["html-content" ["make-string" ["comp-container" "schema/store"]]]
-                                         ["manifest" [".parse" "js/JSON" ["slurp" "|dist/manifest.json"]]]]
+                                         ["manifest" [".parse" "js/JSON" ["slurp" "|dist/assets-manifest.json"]]]
+                                         ["cljs-manifest" [".parse" "js/JSON" ["slurp" "|dist/manifest.json"]]]]
                                         ["make-page"
                                          "html-content"
                                          ["merge"
@@ -114,7 +113,10 @@
                                           ["{}"
                                            [":styles" ["[]" ["aget" "manifest" "|main.css"]]]
                                            [":scripts"
-                                            ["[]" ["aget" "manifest" "|vendor.js"] ["aget" "manifest" "|main.js"]]]]]]]]},
+                                            ["[]"
+                                             ["aget" "manifest" "|main.js"]
+                                             ["->" "cljs-manifest" ["aget" "0"] ["aget" "|js-name"]]
+                                             ["->" "cljs-manifest" ["aget" "1"] ["aget" "|js-name"]]]]]]]]]},
                    :procs []},
          "schema" {:ns ["ns" "app.schema"],
                    :defs {"store" ["def" "store" ["{}" [":states" ["{}"]] [":data" "0"]]]},

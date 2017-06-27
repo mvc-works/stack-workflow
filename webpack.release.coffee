@@ -9,9 +9,7 @@ module.exports =
   entry:
     main: './entry/release'
     vendor: [
-      './target/release/cljs.core'
-      './target/release/respo.core'
-      './target/release/respo_ui.style'
+      'respo-ui'
     ]
   output:
     path: path.join(__dirname, './dist/')
@@ -36,9 +34,7 @@ module.exports =
     ]
   plugins: [
     new ExtractTextPlugin('[name].[chunkhash:8].css'),
-    new webpack.optimize.CommonsChunkPlugin
-      name: 'vendor',
-      filename: 'vendor.[chunkhash:8].js'
     new UglifyJSPlugin sourceMap: true
     new ManifestPlugin
+      fileName: 'assets-manifest.json'
   ]

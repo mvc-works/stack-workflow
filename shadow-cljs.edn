@@ -4,6 +4,7 @@
                 [mvc-works/shell-page   "0.1.2"]
                 [respo/ui               "0.1.9"]
                 [respo                  "0.5.10"]]
+ :open-file-command ["/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ["%s:%s:%s" :file :line :column]]
  :builds {:browser {:target :browser
                     :output-dir "target/browser"
                     :asset-path "/browser"

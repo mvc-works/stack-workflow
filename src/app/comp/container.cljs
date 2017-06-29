@@ -17,4 +17,4 @@
   (div
    {}
    (button
-    {:style ui/button, :inner-text (str "inc " (:data store)), :event {:click on-click}}))))
+    {:style ui/button, :inner-text (str "inc " (:data store)), :on {:click on-click}}))))

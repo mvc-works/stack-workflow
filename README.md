@@ -1,4 +1,6 @@
 
+> [Deprecated] use [coworkflow](https://github.com/mvc-works/coworkflow) instead
+
 Stack Workflow
 ----
 
